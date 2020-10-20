@@ -1,0 +1,19 @@
+{
+  "name": "sav-connect",
+  "version": "1.0.0",
+  "description": "Application for repair companies",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Stellavilar/sav-connect.git"
+  },
+  "author": "Stella Vilar / Jimmy Dupré de Baubigny",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Stellavilar/sav-connect/issues"
+  },
+  "homepage": "https://github.com/Stellavilar/sav-connect#readme"
+}
