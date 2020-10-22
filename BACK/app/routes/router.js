@@ -22,5 +22,13 @@ const loginController = require ('../controllers/loginController');
 router.post('/login', loginController.login);
 router.get('/logout', loginController.logout);
 
+/**Customer routes */
+const customerController = require ('../controllers/customerController');
+router.get('/customers', customerController.findAll);
+router.get('/customer/:id', customerController.findOne);
+router.post('/customer/add', customerController.add);
+router.patch('/customer/edit/:id', customerController.edit);
+
+
 
 module.exports = router;
