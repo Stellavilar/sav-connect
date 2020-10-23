@@ -1,6 +1,8 @@
 const db = require ('../dbConnect');
 
 const Customer = require ('./Customer');
+const Tag = require('./Tag');
+
 
 module.exports = class RepairSheets {
 
@@ -60,8 +62,8 @@ module.exports = class RepairSheets {
             const result = await db.query(query);
 
             for(let i = 0; i < result.rowCount; i++){
-                // const tags = await Tag.tagBySav(result.rows[i].id);
-                // result.rows[i].tags = tags;
+                const tags = await Tag.tagBySav(result.rows[i].id);
+                result.rows[i].tags = tags;
                 const customer = await Customer.findOne(result.rows[i].customer_id);
                 result.rows[i].customer = customer;
             }
@@ -87,8 +89,8 @@ module.exports = class RepairSheets {
             const result = await db.query(query, values);
 
             if(result.rowCount == 1) {
-                // const tags = await Tag.tagBySav(result.rows[0].id);
-                // result.rows[0].tags = tags;
+                const tags = await Tag.tagBySav(result.rows[0].id);
+                result.rows[0].tags = tags;
                 // const configPannes = await ConfigPanne.configPanneBySav(result.rows[0].id);
                 // result.rows[0].config_pannes = configPannes;
                 const customer = await Customer.findOne(result.rows[0].customer_id);

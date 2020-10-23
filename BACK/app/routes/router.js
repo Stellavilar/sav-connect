@@ -47,6 +47,17 @@ router.get('/repairSheet/stepThree/:order_number', repairSheetController.getStep
 router.patch('/repairSheet/stepFour/:order_number', repairSheetController.formStepFour);
 router.get('/repairSheet/stepFour/:order_number', repairSheetController.getStepFour);
 
+/**Tags Routes */
+const tagController = require ('../controllers/tagController');
+router.get('/tag/:id', tagController.findOne);
+router.get('/tags', tagController.findAll);
+router.get('/tag/:idTag/sav/:idSav', tagController.addTagOnSav);
+router.get('/repairSheet/tag/:idSav', tagController.tagsOnSav);
+router.get('/remove/:idTag/sav/:idSav', tagController.removeTagOnSav);
+router.get('/tag/archive/:id', tagController.archive);
+router.post('/tag/add', tagController.add );
+router.patch('/tag/edit/:id', tagController.edit);
+
 
 
 module.exports = router;
