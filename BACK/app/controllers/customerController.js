@@ -125,17 +125,13 @@ module.exports = customerController = {
                     return res.send({"error": "Votre adresse Email n'est pas correct."});
                 }
             }
-            const customer = new Customer ({
-                id,
-                firstname,
-                lastname,
-                mail,
-                phone,
-                phone_two,
-                customer_detail
-            });
-            const result = await customer.edit();
-            return res.send(result);
+
+            const result = await Customer.edit(id,firstname,lastname,mail,phone,phone_two,customer_detail);
+            if(result == false) {
+                res.status(403).send({"error": "Une erreur s'est produite lors de la modification du Client."});
+            }else{
+                return res.send(result);
+            }
 
         } catch (error) {
             console.log(error);

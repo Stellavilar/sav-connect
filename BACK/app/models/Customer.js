@@ -97,18 +97,11 @@ module.exports = class Customer {
         }
     }
 
-    /**
-     * Edit Tag
-     * @param {id} id 
-     * @param {firstname} firstname 
-     * @param {lastname} lastname 
-     * @param {mail} mail 
-     * @param {phone} phone 
-     */
-    async edit() {
+    
+    static async edit(id, firstname, lastname, mail, phone, phone_two, customer_detail) {
         try {
             const query = 'UPDATE "customer" SET firstname=$1, lastname=$2, mail=$3, phone=$4, phone_two=$5, customer_detail=$6, updated_at=now() WHERE id=$7 RETURNING *;';
-            const values = [this.firstname, this.lastname, this.mail, this.phone, this.phone_two, this.customer_detail, this.id];
+            const values = [firstname, lastname, mail, phone, phone_two, customer_detail, id];
             const result = await db.query(query, values);
             if(result.rowCount == 1){
                 return result.rows[0];

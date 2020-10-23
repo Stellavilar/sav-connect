@@ -29,6 +29,24 @@ router.get('/customer/:id', customerController.findOne);
 router.post('/customer/add', customerController.add);
 router.patch('/customer/edit/:id', customerController.edit);
 
+/**Repair Sheet routes */
+const repairSheetController = require ('../controllers/RepairSheetController');
+router.get('/repairSheets', repairSheetController.findAll);
+router.get('/repairSheet/:id', repairSheetController.findOne);
+router.post('/repairSheet/add', repairSheetController.add);
+
+router.post('/repairSheet/stepOne', repairSheetController.formStepOne);
+router.get('/repairSheet/stepOne/:order_number', repairSheetController.getStepOne);
+
+router.patch('/repairSheet/stepTwo/:order_number', repairSheetController.formStepTwo);
+router.get('/repairSheet/stepTwo/:order_number', repairSheetController.getStepTwo);
+
+router.patch('/repairSheet/stepThree/:order_number', repairSheetController.formStepThree);
+router.get('/repairSheet/stepThree/:order_number', repairSheetController.getStepThree);
+
+router.patch('/repairSheet/stepFour/:order_number', repairSheetController.formStepFour);
+router.get('/repairSheet/stepFour/:order_number', repairSheetController.getStepFour);
+
 
 
 module.exports = router;
