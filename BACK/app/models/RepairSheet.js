@@ -2,6 +2,7 @@ const db = require ('../dbConnect');
 
 const Customer = require ('./Customer');
 const Tag = require('./Tag');
+const ConfigPanne = require('./ConfigPanne');
 
 
 module.exports = class RepairSheets {
@@ -66,6 +67,8 @@ module.exports = class RepairSheets {
                 result.rows[i].tags = tags;
                 const customer = await Customer.findOne(result.rows[i].customer_id);
                 result.rows[i].customer = customer;
+                const configPannes = await ConfigPanne.configPanneBySav(result.rows[0].id);
+                result.rows[0].config_pannes = configPannes;
             }
 
             if(result.rowCount < 1){
@@ -81,7 +84,7 @@ module.exports = class RepairSheets {
         }
     }
 
-    static async findOne(id, order_number) {
+    static async findOne(id) {
         try {
             if(!id) { false };
             const query = 'SELECT * FROM "order_repair" LEFT JOIN "order_detail" ON "order_repair".order_number="order_detail".order_number_id WHERE "order_repair".id=$1;';
@@ -91,8 +94,8 @@ module.exports = class RepairSheets {
             if(result.rowCount == 1) {
                 const tags = await Tag.tagBySav(result.rows[0].id);
                 result.rows[0].tags = tags;
-                // const configPannes = await ConfigPanne.configPanneBySav(result.rows[0].id);
-                // result.rows[0].config_pannes = configPannes;
+                const configPannes = await ConfigPanne.configPanneBySav(result.rows[0].id);
+                result.rows[0].config_pannes = configPannes;
                 const customer = await Customer.findOne(result.rows[0].customer_id);
                 result.rows[0].customer = customer;
                 return result.rows[0];

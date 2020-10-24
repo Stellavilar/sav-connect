@@ -148,7 +148,6 @@ CREATE TABLE "order_repair_config_panne" (
     "user_id" int NOT NULL REFERENCES "user"("id"),
     created_at timestamp with time zone DEFAULT now() NOT NULL,
     updated_at timestamp with time zone,
-    UNIQUE("order_repair_id", "config_panne_id", "user_id")
 );
 
 INSERT INTO "role" ("name") VALUES 

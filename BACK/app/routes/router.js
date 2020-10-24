@@ -58,6 +58,17 @@ router.get('/tag/archive/:id', tagController.archive);
 router.post('/tag/add', tagController.add );
 router.patch('/tag/edit/:id', tagController.edit);
 
+/**Pannes Routes */
+const panneController = require ('../controllers/configPanneController');
+const { Router } = require('express');
+router.post('/panne/add', panneController.add);
+router.get('/pannes', panneController.findAll);
+router.get('/panne/:id', panneController.findOne);
+router.patch('/panne/edit/:id', panneController.edit);
+router.get('/:idConfigPanne/sav/:idSav', panneController.addConfigPanneOnSav);
+router.get('/remove/:idPanne/sav/:idSav', panneController.removeConfigPanneOnSav);
+
+
 
 
 module.exports = router;
