@@ -67,6 +67,15 @@ router.get('/panne/:id', panneController.findOne);
 router.patch('/panne/edit/:id', panneController.edit);
 router.get('/:idConfigPanne/sav/:idSav', panneController.addConfigPanneOnSav);
 router.get('/remove/:idPanne/sav/:idSav', panneController.removeConfigPanneOnSav);
+router.get('/archive/:id', configPanneController.archive);
+
+/**Action routes */
+const actionController = require ('../controllers/actionController');
+router.post('/action/add', actionController.add);
+router.patch('/action/edit/:id', actionController.edit);
+router.get('/actions', actionController.findAll);
+router.get('/action/:id', actionController.findOne);
+router.get('/action/:idAction/sav/:idSav', actionController.addActionOnSav);
 
 
 

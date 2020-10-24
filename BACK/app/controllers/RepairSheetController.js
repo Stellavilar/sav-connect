@@ -4,8 +4,8 @@ const validateEmail = require ('../utils/mail.utils');
 
 const RepairSheet = require ('../models/RepairSheet');
 const Customer = require ('../models/Customer');
-const { response } = require('express');
 const RepairSheets = require('../models/RepairSheet');
+const Action = require ('../models/Action');
 
 module.exports = RepairSheetController = {
 
@@ -201,10 +201,10 @@ module.exports = RepairSheetController = {
             if(!result){
                 return res.send({"error": "Une erreur s'est produite lors de la création de la fiche."});
             }
-            // let headerAuth = req.headers.authorization;
-            // // On récupère l'id stocké dans le code
-            // const userId = jwt.getUserId(headerAuth);
-            // await Action.addActionOnSav(2,result.id,userId);
+            let headerAuth = req.headers.authorization;
+            // On récupère l'id stocké dans le code
+            const userId = jwt.getUserId(headerAuth);
+            await Action.addActionOnSav(2,result.id,userId);
             return res.send({"order_number": result});
         } catch (error) {
             console.log(error);
@@ -251,10 +251,10 @@ module.exports = RepairSheetController = {
                 order_number
             });
 
-            // let headerAuth = req.headers.authorization;
-            // // On récupère l'id stocké dans le code
-            // const userId = jwt.getUserId(headerAuth);
-            // const resultAction = await Action.addActionOnSav(4, order_number_id, userId);
+            let headerAuth = req.headers.authorization;
+            // On récupère l'id stocké dans le code
+            const userId = jwt.getUserId(headerAuth);
+            const resultAction = await Action.addActionOnSav(4, order_number_id, userId);
 
             // result ? res.send(true) : res.send(false);
             res.send(result)
@@ -294,10 +294,10 @@ module.exports = RepairSheetController = {
 
         !result ? res.send({"error": "Une erreur s'est produite lors de la modification."}): ''; 
 
-        // let headerAuth = req.headers.authorization;
-        // // On récupère l'id stocké dans le code
-        // const userId = jwt.getUserId(headerAuth);
-        // await Action.addActionOnSav(4, order_number_id, userId);
+        let headerAuth = req.headers.authorization;
+        // On récupère l'id stocké dans le code
+        const userId = jwt.getUserId(headerAuth);
+        await Action.addActionOnSav(4, order_number_id, userId);
         
         return res.send(true);
     } catch (error) {
@@ -344,10 +344,10 @@ module.exports = RepairSheetController = {
                 return res.send({"error": "Une erreur s'est produite lors de la modification."});
             }
 
-            // let headerAuth = req.headers.authorization;
-            // // On récupère l'id stocké dans le code
-            // const userId = jwt.getUserId(headerAuth);
-            // await Action.addActionOnSav(4, order_number_id, userId);
+            let headerAuth = req.headers.authorization;
+            // On récupère l'id stocké dans le code
+            const userId = jwt.getUserId(headerAuth);
+            await Action.addActionOnSav(4, order_number_id, userId);
 
             return res.send(true);
         } catch (error) {
