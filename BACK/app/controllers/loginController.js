@@ -13,12 +13,12 @@ module.exports = loginController = {
 
             const result = await User.login(mail, password);
             if(!result){
-                return res.send({"error": "Une erreur s'est produite."});
+                return res.send({"error" : "Une erreur s'est produite"});
             }
             req.session.token = result.token;
             const {token, isAdmin } = result;
             const resultSend = {
-                token: token
+                token: token,
             };
             if(isAdmin === 2){
                 resultSend.isAdmin = true

@@ -1,4 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400&display=swap');
+
+$white: #FFFFFF;
+$blue: #2c3e50;
+$grey: #ecf0f1;
+$orange: #E5A430;
+$green: #6BBC76;
+$bg: url('../img/Fond jaune.png');
+
 body {
-  background-color: brown;
+  width: 100vw;
+  min-height: 100vh;
+  font-family: 'Montserrat', sans-serif; 
+  margin: 0px;
 };
 
+// Desktop Version
+.login {
+  width: 100vw;
+  min-height: 100vh;
+  background-image: $bg;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: $blue;
+
+    img {
+      width: 30vw;
+    }
+
+    .ui.header {
+      margin: 0px;
+      text-align: center;
+      font-size: 2em;
+      
+    }
+    .ui.form {
+      width: 100vw;
+      text-align: center;
+      padding: 15vh 20px;
+
+      label {
+        font-size: 1.2em;
+        font-weight: bold;
+      }
+    }
+}
+.dashboard {
+  width: 100vw;
+  min-height: 100vh;
+  background-color: violet;
+}
+.dashboard-user {
+  width: 100vw;
+  min-height: 100vh;
+  background-color: brown;
+}

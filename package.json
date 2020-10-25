@@ -4,7 +4,14 @@
   "description": "Application for repair companies",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "install_back": "cd BACK && npm install && cd ..",
+    "install_front": "cd FRONT/sav-connect && yarn",
+    "install": "npm run install_back && npm run install_front",
+    "start_back": "npx nodemon BACK/index.js",
+    "start_front": "cd FRONT/sav-connect && npm start ",
+    "watching": "npm run start_back & npm run start_front ",
+    "start": ""
   },
   "repository": {
     "type": "git",
