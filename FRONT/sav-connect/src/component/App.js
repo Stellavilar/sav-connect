@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route } from 'react-router-dom';
-// import axios from 'axios';
+import axios from 'axios';
 
 import '../styles/index.scss';
 
@@ -10,6 +10,20 @@ import DashboardUser from './DashboardUser';
 
 
 const App = () => {
+  //Get all repairs sheet
+  const [ repair, setRepair ] = useState([]);
+  const repairsSheet = () => {
+    axios.get('repairSheets')
+      .then((res) => {
+        setRepair(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      return repairsSheet;
+  };
+
+  useEffect(repairsSheet, []);
 
 
   return (
@@ -18,10 +32,10 @@ const App = () => {
           <Login />
         </Route>
         <Route exact path="/dashboardAdmin">
-          <DashboardAdmin />
+          <DashboardAdmin repair={repair} />
         </Route>
         <Route exact path="/dashboardUser">
-          <DashboardUser />
+          <DashboardUser repair={repair}/>
         </Route>
       </div>
 
