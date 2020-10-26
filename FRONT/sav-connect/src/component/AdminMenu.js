@@ -1,15 +1,18 @@
 import React from 'react';
-import { Dropdown, Menu } from 'semantic-ui-react'
+import { useHistory } from 'react-router-dom';
+import { Dropdown, Menu } from 'semantic-ui-react';
 
 
 const AdminMenu = () => {
+    const history = useHistory();
+
     return (
         <div className='dashboard-menu'>
             <Menu vertical>
                 <Dropdown item text='Réparations'>
                     <Dropdown.Menu>
-                        <Dropdown.Item>Créer une fiche réparation</Dropdown.Item>
-                        <Dropdown.Item>Liste des réparations</Dropdown.Item>
+                        <Dropdown.Item onClick={() => history.push('/RepairSheetForm')}>Créer une fiche réparation</Dropdown.Item>
+                        <Dropdown.Item onClick={() => history.push('/dashboardAdmin')}>Liste des réparations</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
                 <Dropdown item text='Clients'>

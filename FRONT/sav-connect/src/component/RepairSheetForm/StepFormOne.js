@@ -21,6 +21,7 @@ const StepFormOne = ({clients}) => {
     ;
     /**Form */
     const [ repairData, setRepairData ] = useState({
+        customer_id: '',
         firstname :'',
         lastname : '',
         phone : '',
@@ -34,14 +35,14 @@ const StepFormOne = ({clients}) => {
     };
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('repairSheet/add', repairData , {
+        axios.post('repairSheet/stepOne', repairData , {
             withCredentials: true,
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token')
             }
         })
         .then((res) => {
-            const order_number = res.data.order_number;
+            const order_number = res.data.order_number.order_number;
             history.push(`/RepairSheet/edit/${order_number}`)
         })
         .catch((err) => {

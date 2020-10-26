@@ -26,7 +26,7 @@ const DashboardAdmin = ({repair}) => {
                 <div className='grid-details'>{new Intl.DateTimeFormat('fr-FR').format(new Date(rep.date_enter))}</div>
             </Grid.Column>
             <Grid.Column>
-                    <span style={{backgroundColor : rep.tags[0].color}}>{rep.tags[0].title}</span>
+                { rep.tags[0] ? <span style={{backgroundColor : rep.tags[0].color}}>{rep.tags[0].title}</span> : <span></span>}
             </Grid.Column>
             <Grid.Column>
             <i className="far fa-eye"></i>

@@ -4,6 +4,7 @@ import axios from 'axios';
 
 import '../styles/index.scss';
 
+import Header from './Header';
 import Login from './Login';
 import DashboardAdmin from './DashboardAdmin';
 import DashboardUser from './DashboardUser';
@@ -48,15 +49,19 @@ const App = () => {
           <Login />
         </Route>
         <Route exact path="/dashboardAdmin">
+          <Header />
           <DashboardAdmin repair={repair} />
         </Route>
         <Route exact path="/dashboardUser">
+          <Header />
           <DashboardUser repair={repair}/>
         </Route>
         <Route exact path="/RepairSheetForm">
+          <Header />
           <StepFormOne clients={clients}/>
         </Route>
         <Route exact path="/RepairSheet/edit/:order_number">
+          <Header />
           <RepairSheetForm />
         </Route>
       </div>

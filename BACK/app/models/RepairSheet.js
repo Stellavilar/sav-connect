@@ -196,7 +196,6 @@ module.exports = class RepairSheets {
             if(result.rowCount !== 1){
                 return false;
             }
-
             return result.rows;
 
         } catch (error) {
@@ -244,7 +243,9 @@ module.exports = class RepairSheets {
             `;
             const values = [order_number];
             const result = await db.query(query,values);
-            // result.rowCount != 1 ? false : '';
+            if(result.rowCount !== 1){
+                return false;
+            }
             return result.rows;
         } catch (error) {
             console.log(error);
@@ -279,8 +280,9 @@ module.exports = class RepairSheets {
             `;
             const values = [order_number];
             const result = await db.query(query,values);
-
-            // result.rowCount != 1 ? false : '';
+            if(result.rowCount !== 1){
+                return false;
+            }
             return result.rows;
 
         } catch (error) {
@@ -336,8 +338,9 @@ module.exports = class RepairSheets {
             `;
             const values = [order_number];
             const result = await db.query(query,values);
-
-            // result.rowCount != 1 ? false : '';
+            if(result.rowCount !== 1){
+                return false;
+            }
             return result.rows;
         } catch (error) {
             console.log(error);
