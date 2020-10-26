@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import axios from 'axios';
 
 import '../styles/index.scss';
@@ -12,6 +12,9 @@ import RepairSheetForm from './RepairSheetForm/RepairSheetForm';
 import StepFormOne from './RepairSheetForm/StepFormOne';
 
 const App = () => {
+
+  const token = localStorage.getItem('token');
+
   //Get all repairs sheet
   const [ repair, setRepair ] = useState([]);
   const repairsSheet = () => {
@@ -48,21 +51,25 @@ const App = () => {
         <Route exact path="/">
           <Login />
         </Route>
-        <Route exact path="/dashboardAdmin">
-          <Header />
-          <DashboardAdmin repair={repair} />
+        <Route exact path="/dashboardAdmin" render={()=>!token ? <Redirect to='/'/> :  <>
+          <Header /> 
+          <DashboardAdmin repair={repair} /> </>
+        }>
         </Route>
-        <Route exact path="/dashboardUser">
+        <Route exact path="/dashboardUser" render={()=>!token ? <Redirect to='/'/> :  <>
           <Header />
-          <DashboardUser repair={repair}/>
+          <DashboardUser repair={repair}/> </>
+          }>
         </Route>
-        <Route exact path="/RepairSheetForm">
+        <Route exact path="/RepairSheetForm" render={()=>!token ? <Redirect to='/'/> :  <>
           <Header />
-          <StepFormOne clients={clients}/>
+          <StepFormOne clients={clients}/> </>
+        }>
         </Route>
-        <Route exact path="/RepairSheet/edit/:order_number">
+        <Route exact path="/RepairSheet/edit/:order_number" render={()=>!token ? <Redirect to='/'/> :  <>
           <Header />
-          <RepairSheetForm />
+          <RepairSheetForm /> </>
+        }>
         </Route>
       </div>
 
