@@ -7,7 +7,8 @@ import '../styles/index.scss';
 import Login from './Login';
 import DashboardAdmin from './DashboardAdmin';
 import DashboardUser from './DashboardUser';
-
+import RepairSheetForm from './RepairSheetForm/RepairSheetForm';
+import StepFormOne from './RepairSheetForm/StepFormOne';
 
 const App = () => {
   //Get all repairs sheet
@@ -23,7 +24,22 @@ const App = () => {
       return repairsSheet;
   };
 
+  //Get all customers
+  const [ clients, setClients ] = useState([]);
+  const allCustomers = () => {
+    axios.get('customers')
+      .then((res) => {
+        setClients(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      return allCustomers;
+  }
+
   useEffect(repairsSheet, []);
+  useEffect(allCustomers, []);
+
 
 
   return (
@@ -36,6 +52,12 @@ const App = () => {
         </Route>
         <Route exact path="/dashboardUser">
           <DashboardUser repair={repair}/>
+        </Route>
+        <Route exact path="/RepairSheetForm">
+          <StepFormOne clients={clients}/>
+        </Route>
+        <Route exact path="/RepairSheet/edit/:order_number">
+          <RepairSheetForm />
         </Route>
       </div>
 

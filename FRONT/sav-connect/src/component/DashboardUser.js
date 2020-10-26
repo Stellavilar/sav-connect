@@ -1,6 +1,8 @@
 import React from 'react';
 import { Grid, Segment } from 'semantic-ui-react'
 
+import WorkerMenu from './WorkerMenu';
+
 
 const DashboardUser = ({repair}) => {
 
@@ -35,37 +37,40 @@ const DashboardUser = ({repair}) => {
         </Grid.Row>
     )
     return (
-        <div className='dashboard'>
-            <Grid columns='equal'>
-                <Grid.Row>
-                    <Grid.Column>
-                        <Segment>N° de billet</Segment>
-                    </Grid.Column>
-                    <Grid.Column>
-                        <Segment>Client</Segment>
-                    </Grid.Column>
-                    <Grid.Column>
-                        <Segment>Appareil</Segment>
-                    </Grid.Column>
-                    <Grid.Column>
-                        <Segment>Modèle</Segment>
-                    </Grid.Column>
-                    <Grid.Column>
-                        <Segment>Entrée en SAV</Segment>
-                    </Grid.Column>
-                    <Grid.Column>
-                        <Segment>Tags</Segment>
-                    </Grid.Column>
-                    <Grid.Column>
-                        <Segment>Options</Segment>
-                    </Grid.Column>
-                </Grid.Row>
-            </Grid>
-            <Segment className='grid-details'>
-                <Grid columns={7}>
-                    {repairsSheet}
+        <div className='main-page'>
+            <WorkerMenu />
+            <div className='dashboard'>
+                <Grid columns='equal'>
+                    <Grid.Row>
+                        <Grid.Column>
+                            <Segment>N° de billet</Segment>
+                        </Grid.Column>
+                        <Grid.Column>
+                            <Segment>Client</Segment>
+                        </Grid.Column>
+                        <Grid.Column>
+                            <Segment>Appareil</Segment>
+                        </Grid.Column>
+                        <Grid.Column>
+                            <Segment>Modèle</Segment>
+                        </Grid.Column>
+                        <Grid.Column>
+                            <Segment>Entrée en SAV</Segment>
+                        </Grid.Column>
+                        <Grid.Column>
+                            <Segment>Tags</Segment>
+                        </Grid.Column>
+                        <Grid.Column>
+                            <Segment>Options</Segment>
+                        </Grid.Column>
+                    </Grid.Row>
                 </Grid>
-            </Segment>
+                <Segment className='grid-details'>
+                    <Grid columns={7}>
+                        {repairsSheet}
+                    </Grid>
+                </Segment>
+            </div>
         </div>
     );
 };

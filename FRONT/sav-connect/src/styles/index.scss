@@ -53,10 +53,13 @@ body {
       }
     }
 }
+.main-page {
+  display: flex;
+}
 .dashboard {
-  width: 70vw;
   min-height: 100vh;
-
+  padding: 25px;
+ 
   .ui.grid > .row{
     width: 70vw;
   }
@@ -94,10 +97,124 @@ body {
     
   }
 }
-.dashboard-user {
-  width: 100vw;
+.dashboard-menu {
+  background-color: $blue;
+  width: 15%;
   min-height: 100vh;
-  background-color: brown;
+  display: flex;
+  align-items: center;
+
+  .ui.dropdown>.text {
+    font-size: 1.6em;
+    font-family: 'Montserrat', sans-serif; 
+  }
+  .ui.vertical.menu .item > i.icon {
+    display: none;
+  }
+  .ui.vertical.menu .item {
+    background-color: $blue;
+    color: white;
+  }
+  .ui.vertical.menu{
+    & :hover {
+      background-color: white;
+      color: $blue;
+    }
+    border: none;
+  }
+  .ui.menu .ui.dropdown .menu > .item {
+    color: $blue !important;
+    font-size: 1.3em !important;
+  }
+}
+.repair-sheet-form {
+  min-height: 100vh;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .ui.header {
+    color: $blue;
+  }
+
+  .ui.selection.dropdown {
+    width: 50%;
+  }
+  .row-options {
+    display: flex;
+    justify-content: space-around;
+    &:hover {
+      background-color: $grey;
+    }
+    div {
+      font-size: 1.2em !important;
+      margin-bottom: 20px ;
+      padding: 5px;
+    }
+  }
+
+  .ui.form {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+      label {
+        font-size: 1.2em;
+        font-weight: bold;
+        color: $blue;
+      }
+      .field {
+        width: 50%;
+        // margin: auto;
+      }
+      .buttons {
+        margin: 25px;
+        align-items: center;
+      }
+  }
+}
+.repair-sheet-infos {
+  padding: 30px;
+
+  .ui.header {
+    margin-bottom: 40px;
+    color: $blue;
+    text-decoration: underline;
+  }
+  .ui.list .list>.item, .ui.list>.item, ol.ui.list li, ul.ui.list li {
+    margin-bottom: 10px;
+    color: $blue;
+  }
+}
+.tab {
+  min-height: 100vh;
+  padding: 25px;
+  width: 70vw;
+}
+.ui.tabular.menu .item {
+  font-size: 1.5em;
+}
+.tab-form {
+  
+  .ui.form {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+      label {
+        font-size: 1.2em;
+        font-weight: bold;
+        color: $blue;
+      }
+      .field {
+        width: 70%;
+      }
+      .buttons {
+        margin: 25px;
+        align-items: center;
+      }
+  }
 }
 
 

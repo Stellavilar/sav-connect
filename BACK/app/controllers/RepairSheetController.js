@@ -254,7 +254,7 @@ module.exports = RepairSheetController = {
             let headerAuth = req.headers.authorization;
             // On récupère l'id stocké dans le code
             const userId = jwt.getUserId(headerAuth);
-            const resultAction = await Action.addActionOnSav(4, order_number_id, userId);
+            // const resultAction = await Action.addActionOnSav(4, order_number_id, userId);
 
             // result ? res.send(true) : res.send(false);
             res.send(result)
@@ -297,7 +297,7 @@ module.exports = RepairSheetController = {
         let headerAuth = req.headers.authorization;
         // On récupère l'id stocké dans le code
         const userId = jwt.getUserId(headerAuth);
-        await Action.addActionOnSav(4, order_number_id, userId);
+        // await Action.addActionOnSav(4, order_number_id, userId);
         
         return res.send(true);
     } catch (error) {
@@ -347,7 +347,7 @@ module.exports = RepairSheetController = {
             let headerAuth = req.headers.authorization;
             // On récupère l'id stocké dans le code
             const userId = jwt.getUserId(headerAuth);
-            await Action.addActionOnSav(4, order_number_id, userId);
+            // await Action.addActionOnSav(4, order_number_id, userId);
 
             return res.send(true);
         } catch (error) {
