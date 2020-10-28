@@ -13,7 +13,6 @@ const RepairSheet = () => {
     const [ interData, setInterData ] = useState([]);
     const [ devisData, setDevisData ] = useState([]);
 
-
     let {id} = useParams();
     const getData = () => {
         axios.get(`repairSheet/stepOne/${id}`)
@@ -56,14 +55,13 @@ const RepairSheet = () => {
             return getDevis;
     };
 
+    const urlQrcode = `http://localhost:9090/RepairSheet/${id}`
+    const qrSize = 180;
+
     useEffect(getData, []);
     useEffect(getDevice, []);
     useEffect(getInter, []);
     useEffect(getDevis, []);
-
-
-    const urlQrcode = `http://localhost:9090/RepairSheet/${id}`
-    const qrSize = 180;
 
     return (
         <div className='repair-sheet'>

@@ -1,16 +1,15 @@
 import React from 'react';
-import { Grid, Segment } from 'semantic-ui-react'
+import { Grid, Segment } from 'semantic-ui-react';
+import { useHistory } from 'react-router-dom';
 
 import WorkerMenu from './WorkerMenu';
 
 
 const DashboardUser = ({repair}) => {
-
-    const test = () => {console.log('cliqué')}
-
+    const history = useHistory();
 
     const repairsSheet = repair.map((rep) =>
-        <Grid.Row className='grid-details' key={rep.id} onClick={test}>
+        <Grid.Row className='grid-details' key={rep.id}>
             <Grid.Column>
                 <div className='grid-details'>{rep.order_number}</div>
             </Grid.Column>
@@ -27,10 +26,10 @@ const DashboardUser = ({repair}) => {
                 <div className='grid-details'>{new Intl.DateTimeFormat('fr-FR').format(new Date(rep.date_enter))}</div>
             </Grid.Column>
             <Grid.Column>
-                    <span style={{backgroundColor : rep.tags[0].color}}>{rep.tags[0].title}</span>
+                { rep.tags[0] ? <span style={{backgroundColor : rep.tags[0].color}}>{rep.tags[0].title}</span> : <span></span>}
             </Grid.Column>
             <Grid.Column>
-            <i className="far fa-eye"></i>
+            <i className="far fa-eye" onClick={()=> history.push(`/RepairSheet/${rep.order_number}`)} ></i>
             <i className="fas fa-pencil-alt"></i>
             <i className="far fa-trash-alt"></i>
             </Grid.Column>

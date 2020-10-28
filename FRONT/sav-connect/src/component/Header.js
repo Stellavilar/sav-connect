@@ -27,7 +27,7 @@ const Header = () => {
 
     return (
         <div className='navbar'>
-            <img src={logo} alt='logo' onClick={()=>history.push('/dashboardAdmin')}/>
+            <img src={logo} alt='logo' onClick={()=>history.push('/dashboard')}/>
             <Search></Search>
             <div className='profil-buttons'>
                 <Button color='linkedin' onClick={disconnect} >Déconnexion</Button>

@@ -6,16 +6,18 @@ import '../styles/index.scss';
 
 import Header from './Header';
 import Login from './Login';
-import DashboardAdmin from './DashboardAdmin';
-import DashboardUser from './DashboardUser';
+import Dashboard from './Dashboard';
 import RepairSheetForm from './RepairSheetForm/RepairSheetForm';
 import StepFormOne from './RepairSheetForm/StepFormOne';
 import RepairSheet from './RepairSheetInfos/RepairSheet';
+import AdminMenu from './AdminMenu';
+import WorkerMenu from './WorkerMenu';
 
 const App = () => {
 
   const token = localStorage.getItem('token');
-
+  const isAdmin =localStorage.getItem('isAdmin');
+  
   //Get all repairs sheet
   const [ repair, setRepair ] = useState([]);
   const repairsSheet = () => {
@@ -45,34 +47,43 @@ const App = () => {
   useEffect(repairsSheet, []);
   useEffect(allCustomers, []);
 
-
-
   return (
       <div className='App'>
         <Route exact path="/">
           <Login />
         </Route>
-        <Route exact path="/dashboardAdmin">
-          <Header /> 
-          <DashboardAdmin repair={repair} /> 
-        </Route>
-        <Route exact path="/dashboardUser">
+        <Route exact path="/dashboard">
           <Header />
-          <DashboardUser repair={repair}/> 
+          <div className='main-page'> 
+          {isAdmin === 'true' ? <AdminMenu/> : <WorkerMenu/>}
+          <Dashboard repair={repair} /> 
+          </div>
         </Route>
         <Route exact path="/RepairSheetForm" render={()=>!token ? <Redirect to='/'/> :  <>
-          <Header />
-          <StepFormOne clients={clients}/> </>
+        <Header />
+        <div className='main-page'>
+          {isAdmin === 'true' ? <AdminMenu/> : <WorkerMenu/>}
+          <StepFormOne clients={clients}/> 
+          </div>
+          </>
         }>
         </Route>
         <Route exact path="/RepairSheet/edit/:order_number" render={()=>!token ? <Redirect to='/'/> :  <>
           <Header />
-          <RepairSheetForm /> </>
+          <div className='main-page'>
+          {isAdmin === 'true' ? <AdminMenu/> : <WorkerMenu/>}
+          <RepairSheetForm /> 
+          </div>
+          </>
         }>
         </Route>
         <Route exact path="/RepairSheet/:id" render={()=>!token ? <Redirect to='/'/> :  <>
           <Header />
-          <RepairSheet /> </>
+          <div className='main-page'>
+          {isAdmin === 'true' ? <AdminMenu/> : <WorkerMenu/>}
+          <RepairSheet /> 
+          </div>
+          </>
         }>
         </Route>
       </div>

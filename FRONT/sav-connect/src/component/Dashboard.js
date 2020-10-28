@@ -2,9 +2,7 @@ import React from 'react';
 import { Grid, Segment } from 'semantic-ui-react';
 import { useHistory } from 'react-router-dom';
 
-import Adminmenu from './AdminMenu';
-
-const DashboardAdmin = ({repair}) => {
+const Dashboard = ({repair}) => {
     const history = useHistory();
 
     //Map repairs sheet
@@ -37,7 +35,6 @@ const DashboardAdmin = ({repair}) => {
     )
     return (
         <div className='main-page'>
-             <Adminmenu />
             <div className='dashboard'>
                 <Grid columns='equal'>
                     <Grid.Row>
@@ -74,4 +71,4 @@ const DashboardAdmin = ({repair}) => {
     );
 };
 
-export default DashboardAdmin;
+export default Dashboard;

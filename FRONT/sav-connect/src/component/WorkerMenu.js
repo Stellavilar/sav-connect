@@ -12,7 +12,7 @@ const history = useHistory();
                 <Dropdown item text='Réparations'>
                     <Dropdown.Menu>
                         <Dropdown.Item onClick={() => history.push('/RepairSheetForm')}>Créer une fiche réparation</Dropdown.Item>
-                        <Dropdown.Item onClick={() => history.push('/dashboardUser')}>Liste des réparations</Dropdown.Item>
+                        <Dropdown.Item onClick={() => history.push('/dashboard')}>Liste des réparations</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
                 <Dropdown item text='Clients'>
