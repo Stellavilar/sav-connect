@@ -1,15 +1,15 @@
 import React from 'react';
-import { Grid, Segment } from 'semantic-ui-react'
+import { Grid, Segment } from 'semantic-ui-react';
+import { useHistory } from 'react-router-dom';
 
 import Adminmenu from './AdminMenu';
 
 const DashboardAdmin = ({repair}) => {
-
-    const test = () => {console.log('cliqué')}
+    const history = useHistory();
 
     //Map repairs sheet
     const repairsSheet = repair.map((rep) =>
-        <Grid.Row className='grid-details' key={rep.id} onClick={test}>
+        <Grid.Row className='grid-details' key={rep.id} >
             <Grid.Column>
                 <div className='grid-details'>{rep.order_number}</div>
             </Grid.Column>
@@ -29,8 +29,8 @@ const DashboardAdmin = ({repair}) => {
                 { rep.tags[0] ? <span style={{backgroundColor : rep.tags[0].color}}>{rep.tags[0].title}</span> : <span></span>}
             </Grid.Column>
             <Grid.Column>
-            <i className="far fa-eye"></i>
-            <i className="fas fa-pencil-alt"></i>
+            <i className="far fa-eye" onClick={()=> history.push(`/RepairSheet/${rep.order_number}`)} ></i>
+            <i className="fas fa-pencil-alt" onClick={()=>console.log('cliqué')}></i>
             <i className="far fa-trash-alt"></i>
             </Grid.Column>
         </Grid.Row>

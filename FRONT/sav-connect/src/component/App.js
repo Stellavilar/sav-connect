@@ -10,6 +10,7 @@ import DashboardAdmin from './DashboardAdmin';
 import DashboardUser from './DashboardUser';
 import RepairSheetForm from './RepairSheetForm/RepairSheetForm';
 import StepFormOne from './RepairSheetForm/StepFormOne';
+import RepairSheet from './RepairSheetInfos/RepairSheet';
 
 const App = () => {
 
@@ -51,15 +52,13 @@ const App = () => {
         <Route exact path="/">
           <Login />
         </Route>
-        <Route exact path="/dashboardAdmin" render={()=>!token ? <Redirect to='/'/> :  <>
+        <Route exact path="/dashboardAdmin">
           <Header /> 
-          <DashboardAdmin repair={repair} /> </>
-        }>
+          <DashboardAdmin repair={repair} /> 
         </Route>
-        <Route exact path="/dashboardUser" render={()=>!token ? <Redirect to='/'/> :  <>
+        <Route exact path="/dashboardUser">
           <Header />
-          <DashboardUser repair={repair}/> </>
-          }>
+          <DashboardUser repair={repair}/> 
         </Route>
         <Route exact path="/RepairSheetForm" render={()=>!token ? <Redirect to='/'/> :  <>
           <Header />
@@ -69,6 +68,11 @@ const App = () => {
         <Route exact path="/RepairSheet/edit/:order_number" render={()=>!token ? <Redirect to='/'/> :  <>
           <Header />
           <RepairSheetForm /> </>
+        }>
+        </Route>
+        <Route exact path="/RepairSheet/:id" render={()=>!token ? <Redirect to='/'/> :  <>
+          <Header />
+          <RepairSheet /> </>
         }>
         </Route>
       </div>

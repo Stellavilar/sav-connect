@@ -240,7 +240,78 @@ body {
       }
   }
 }
+.repair-sheet {
+  min-height: 100vh;
+  padding: 25px;
+  width: 70vw;
 
+  .ui.list .list>.item, .ui.list>.item, ol.ui.list li, ul.ui.list li {
+    margin-bottom: 10px;
+  }
+
+  .ui.header {
+    text-align: center;
+  }
+  .repair-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+
+      .repair-icons {
+        display: flex;
+        justify-content: space-between;
+         i {
+           font-size: 1.3em;
+           margin-right: 15px;
+           color: $blue;
+         }
+      }
+  }
+  .repair-sheet-device {
+    display: flex;
+    justify-content: center;
+
+    .device {
+      font-size: 1.3em;
+      font-weight: bold;
+      margin: 5px;
+    }
+  }
+  .repair-sheet-options {
+    display: flex;
+    justify-content: space-between;
+  }
+  .repair-sheet-one {
+    border-bottom: $blue solid 0.1px;
+    padding: 10px;
+    font-size: 1.2em;
+  }
+  .repair-sheet-client {
+    border-bottom: $blue solid 0.1px;
+    padding: 10px;
+    font-size: 1.2em;
+
+      .repair-span {
+        font-weight: bold;
+      }
+  }
+  .repair-sheet-repair {
+    border-bottom: $blue solid 0.1px;
+    padding: 10px;
+    font-size: 1.2em;
+
+  }
+  .repair-devis {
+    padding: 10px;
+    font-size: 1.2em;
+
+    .amount.description {
+      display: flex;
+      align-items: center;
+    }
+  }
+}
 
 
 // Mobile version
