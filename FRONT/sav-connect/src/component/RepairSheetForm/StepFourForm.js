@@ -25,7 +25,6 @@ const StepFourForm = () => {
     };
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(e.target)
         axios.patch(`repairSheet/stepFour/${order_number}`, {repairData , devis_is_accepted : isAccepted} , {
             withCredentials: true,
             headers: {

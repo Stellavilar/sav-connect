@@ -16,10 +16,10 @@ module.exports = tagController = {
                 if(result !== false){
                     return res.send(result);
                 }else{
-                    return res.status(403).send({"error": "Une erreur s'est produite lors de la sauvegarde du Tag."});
+                    return res.send({"error": "Une erreur s'est produite lors de la sauvegarde du Tag."});
                 }
             }
-            return res.status(403).send({"error": "Vous n'avez pas complété tous les champs."});
+            return res.send({"error": "Vous n'avez pas complété tous les champs."});
         } catch (error) {
             console.log(error);
             res.status(403).send(error);

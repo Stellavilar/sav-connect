@@ -12,6 +12,8 @@ import StepFormOne from './RepairSheetForm/StepFormOne';
 import RepairSheet from './RepairSheetInfos/RepairSheet';
 import AdminMenu from './AdminMenu';
 import WorkerMenu from './WorkerMenu';
+import TagForm from'./TagForm';
+import TagList from './TagList';
 
 const App = () => {
 
@@ -82,6 +84,24 @@ const App = () => {
           <div className='main-page'>
           {isAdmin === 'true' ? <AdminMenu/> : <WorkerMenu/>}
           <RepairSheet /> 
+          </div>
+          </>
+        }>
+        </Route>
+        <Route exact path="/TagForm" render={()=>!token ? <Redirect to='/'/> :  <>
+          <Header />
+          <div className='main-page'>
+          {isAdmin === 'true' ? <AdminMenu/> : <WorkerMenu/>}
+          <TagForm /> 
+          </div>
+          </>
+        }>
+        </Route>
+        <Route exact path="/TagList" render={()=>!token ? <Redirect to='/'/> :  <>
+          <Header />
+          <div className='main-page'>
+          {isAdmin === 'true' ? <AdminMenu/> : <WorkerMenu/>}
+          <TagList /> 
           </div>
           </>
         }>

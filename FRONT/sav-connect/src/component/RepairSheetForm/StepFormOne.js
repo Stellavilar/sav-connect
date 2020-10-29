@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Button, Header, Form, Select } from 'semantic-ui-react';
 import { useHistory } from 'react-router-dom';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 
@@ -32,6 +31,10 @@ const StepFormOne = ({clients}) => {
     
     const handleChange = (e) => {
         setRepairData({...repairData, [e.target.name] : e.target.value});
+    };
+    /**Handle click on cancel button*/
+    const handleClickButton = () => {
+        window.location.reload(false);
     };
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -131,9 +134,7 @@ const StepFormOne = ({clients}) => {
                 { errorMessage && <p className='error-message'>{errorMessage}</p>}
                 <div className='buttons'>
                     <Button color='teal' disabled={disable}>Valider</Button>
-                    <Link to={'/'}>
-                        <Button color='red'>Annuler</Button>
-                    </Link>
+                    <Button color='red' onClick={handleClickButton}>Annuler</Button>
                 </div>
             </Form>
         </div>

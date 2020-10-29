@@ -12,7 +12,7 @@ const AdminMenu = () => {
                 <Dropdown item text='Réparations'>
                     <Dropdown.Menu>
                         <Dropdown.Item onClick={() => history.push('/RepairSheetForm')}>Créer une fiche réparation</Dropdown.Item>
-                        <Dropdown.Item onClick={() => history.push('/dashboardAdmin')}>Liste des réparations</Dropdown.Item>
+                        <Dropdown.Item onClick={() => history.push('/dashboard')}>Liste des réparations</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
                 <Dropdown item text='Clients'>
@@ -34,8 +34,8 @@ const AdminMenu = () => {
                 </Dropdown>
                 <Dropdown item text='Tags'>
                     <Dropdown.Menu>
-                        <Dropdown.Item>Créer un tag</Dropdown.Item>
-                        <Dropdown.Item>Liste des tags</Dropdown.Item>
+                        <Dropdown.Item onClick={()=> history.push('/TagForm')}  >Créer un tag</Dropdown.Item>
+                        <Dropdown.Item onClick={()=> history.push('/TagList')}>Liste des tags</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
                 <Dropdown item text='Actions'>
