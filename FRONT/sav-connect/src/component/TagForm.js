@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { Button, Form, Header, Segment } from 'semantic-ui-react';
-import { SketchPicker } from 'react-color';
+import { TwitterPicker } from 'react-color';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
@@ -49,7 +49,7 @@ const TagForm = () => {
                     <Form.Field>
                         <label>Couleur</label>
                     </Form.Field>
-                    <SketchPicker
+                    <TwitterPicker
                           name='color'
                           color={color}
                           onChangeComplete={(color) => setColor(color.hex)}
