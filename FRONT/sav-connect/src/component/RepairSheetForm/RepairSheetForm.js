@@ -5,6 +5,7 @@ import StepOne from '../RepairSheetInfos/StepOne';
 import StepTwoForm from '../RepairSheetForm/StepTwoForm';
 import StepThreeForm from '../RepairSheetForm/StepThreeForm';
 import StepFourForm from '../RepairSheetForm/StepFourForm';
+import StepFiveForm from '../RepairSheetForm/StepFiveForm';
 
 
 const panes = [
@@ -12,7 +13,7 @@ const panes = [
   { menuItem: 'Appareil', render: () => <Tab.Pane><StepTwoForm /></Tab.Pane>},
   { menuItem: 'Intervention', render: () => <Tab.Pane><StepThreeForm /></Tab.Pane> },
   { menuItem: 'Devis', render: () => <Tab.Pane><StepFourForm /></Tab.Pane> },
-  { menuItem: 'Options', render: () => <Tab.Pane></Tab.Pane> },
+  { menuItem: 'Options', render: () => <Tab.Pane><StepFiveForm/></Tab.Pane> },
 ]
 
 const RepairSheetForm = () => {

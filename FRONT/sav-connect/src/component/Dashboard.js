@@ -24,11 +24,13 @@ const Dashboard = ({repair}) => {
                 <div className='grid-details'>{new Intl.DateTimeFormat('fr-FR').format(new Date(rep.date_enter))}</div>
             </Grid.Column>
             <Grid.Column>
-                { rep.tags[0] ? <span style={{backgroundColor : rep.tags[0].color}}>{rep.tags[0].title}</span> : null}
+                {rep.tags[0] ? <div className='dashboard-tag' key={rep.tags[0].id} style={{backgroundColor: `${rep.tags[0].color}` }}>{rep.tags[0].title}</div> : null}
+                {rep.tags[1] ? <div className='dashboard-tag' key={rep.tags[1].id} style={{backgroundColor: `${rep.tags[1].color}` }}>{rep.tags[1].title}</div> : null}
+                {rep.tags[2] ? <div className='dashboard-tag' key={rep.tags[2].id} style={{backgroundColor: `${rep.tags[2].color}` }}>{rep.tags[2].title}</div> : null}
             </Grid.Column>
             <Grid.Column>
             <i className="far fa-eye" onClick={()=> history.push(`/RepairSheet/${rep.order_number}`)} ></i>
-            <i className="fas fa-pencil-alt" onClick={()=>console.log('cliqué')}></i>
+            <i className="fas fa-pencil-alt" onClick={()=> history.push(`/RepairSheet/edit/${rep.order_number}`)}></i>
             <i className="far fa-trash-alt"></i>
             </Grid.Column>
         </Grid.Row>
@@ -66,6 +68,7 @@ const Dashboard = ({repair}) => {
                         {repairsSheet}
                     </Grid>
                 </Segment>
+                
             </div>
         </div>
     );

@@ -44,7 +44,7 @@ const App = () => {
         console.log(err);
       })
       return allCustomers;
-  }
+  };
 
   useEffect(repairsSheet, []);
   useEffect(allCustomers, []);

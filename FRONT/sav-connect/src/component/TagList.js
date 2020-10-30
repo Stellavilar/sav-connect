@@ -83,7 +83,7 @@ const Taglist = () => {
     /**Function to remove tag */
     const onClickRemove = (e) => {
         setGetId2(e.target.id);
-        setGetOpen(true)
+        setGetOpen(true);
     };
 
     const handleConfirm = () => {
@@ -118,7 +118,7 @@ const Taglist = () => {
 
 
     const getTags = tagData.map((tag)=> 
-        <div className='tag' key={tag.id} style={{backgroundColor: `${tag.color}` }} onDoubleClick={onClick} id={tag.id} >{tag.title}<div onClick={onClickRemove} id={tag.id} ><i className="far fa-times-circle"></i></div></div>);
+        <div className='tag' key={tag.id} style={{backgroundColor: `${tag.color}` }} onDoubleClick={onClick} id={tag.id} >{tag.title}<div onClick={onClickRemove}  ><i className="far fa-times-circle" id={tag.id}></i></div></div>);
     
     useEffect(Tags, []);
 

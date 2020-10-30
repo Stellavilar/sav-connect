@@ -97,21 +97,25 @@ body {
     justify-content: space-around;
     font-weight: bold;
       &:hover {
-        background-color: #e0c18d;
-      }
-
-      span {
-        padding: 6px;
-        border-radius: 9px;
-        width: 10%;
-        text-align: center;
-        font-weight: bold;
-        border: solid 0.1px gray;
-        margin: 5px;
+        background-color: #d1cfcf;
       }
       i {
-        margin-right: 9px;
+        margin-right: 11px;
+        font-size: 1.2em;
+        &:hover {
+          font-size: 1.5em;
+          color: sienna;
+        }
       }
+  }
+  .dashboard-tag {
+    padding: 6px;
+    border-radius: 9px;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    border: solid 0.1px gray;
+  
   }
   .ui.segment {
     color: $grey;
@@ -242,6 +246,34 @@ body {
         align-items: center;
       }
   }
+  .ui.header.tags-repair {
+    border-top: $grey solid 0.1px;
+    padding-top: 15px;
+  }
+  .tag-area {
+    display: flex;
+    flex-direction: column;
+      .tags-on-form {
+        padding: 6px;
+        border-radius: 9px;
+        width: 15%;
+        text-align: center;
+        font-weight: bold;
+        border: solid 0.1px gray;
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: space-between;
+
+        i {
+          margin-right: 11px;
+          font-size: 1.2em;
+          &:hover {
+            font-size: 1.5em;
+          }
+        }
+      }
+  }
+  
 }
 .repair-sheet {
   min-height: 100vh;
@@ -314,6 +346,12 @@ body {
       align-items: center;
     }
   }
+  .repar-sheet-tag {
+    padding: 11px;
+    margin-bottom: 5px;
+    border-radius: 9px;
+    font-weight: bold;
+  }
 }
 .tag-form {
 
@@ -338,10 +376,11 @@ body {
         align-items: center;
       }
   }
+  
 }
 
 .tag-list {
-  min-height: 100vh;
+  // min-height: 100vh;
   padding: 25px;
   width: 100vw;
 
@@ -359,7 +398,7 @@ body {
     display: flex;
     justify-content: space-between;
   }
-
+  
   .fa, .far, .fas {
     &:hover {
       font-size: 1.5em;

@@ -99,9 +99,9 @@ module.exports = class Tag {
                             WHERE "order_repair_tag".order_repair_id=$1;`;
             const values = [idSav];
             const result = await db.query(query, values);
-            if(result.rowCount < 1){
-                return {};
-            }
+            // if(result.rowCount < 1){
+            //     return {};
+            // }
             return result.rows;
         } catch (error) {
             console.log(error);

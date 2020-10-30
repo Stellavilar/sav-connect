@@ -12,12 +12,15 @@ const RepairSheet = () => {
     const [ deviceData, setDeviceData ] = useState([]);
     const [ interData, setInterData ] = useState([]);
     const [ devisData, setDevisData ] = useState([]);
+    const [ firstTag, setFirstTag ] = useState('');
+    const [ secondTag, setSecondTag ] = useState('');
+    const [ thirdTag, setThirdTag ] = useState('');
 
     let {id} = useParams();
     const getData = () => {
         axios.get(`repairSheet/stepOne/${id}`)
             .then((res)=> {
-                setCustomerData(res.data[0])
+                setCustomerData(res.data[0]);
             })
             .catch((err) => {
                 console.log(err)
@@ -54,6 +57,22 @@ const RepairSheet = () => {
             })
             return getDevis;
     };
+    /**Get tags */
+    const clientData = () => {
+        axios.get(`repairSheet/stepOne/${id}`)
+            .then((res)=> {
+                axios.get(`repairSheet/tag/${res.data[0].id}`)
+                .then((res1)=> {
+                    setFirstTag(res1.data[0]);
+                    setSecondTag(res1.data[1]);
+                    setThirdTag(res1.data[2]);
+                })      
+            })
+            .catch((err)=> {
+                console.log(err);
+            })
+            return clientData;
+    };
 
     const urlQrcode = `http://localhost:9090/RepairSheet/${id}`
     const qrSize = 180;
@@ -62,6 +81,9 @@ const RepairSheet = () => {
     useEffect(getDevice, []);
     useEffect(getInter, []);
     useEffect(getDevis, []);
+    useEffect(clientData, []);
+
+
 
     return (
         <div className='repair-sheet'>
@@ -84,7 +106,11 @@ const RepairSheet = () => {
                             size={qrSize}
                             value={urlQrcode}
                         />
-                        <p>tag</p>
+                        <div className='tag-area'>
+                            { firstTag ? <div className='repar-sheet-tag' style={{backgroundColor: `${firstTag.color}` }}>{firstTag.title}</div> : null }
+                            { secondTag ? <div className='repar-sheet-tag' style={{backgroundColor: `${secondTag.color}` }}>{secondTag.title}</div> : null}  
+                            { thirdTag ? <div className='repar-sheet-tag' style={{backgroundColor: `${thirdTag.color}` }}>{thirdTag.title}</div> : null} 
+                        </div>
                     </div>
                 </div>
                 <div className='repair-sheet-client'>
