@@ -68,9 +68,7 @@ module.exports = class Tag {
         try {
             const query = 'SELECT * FROM "tag" WHERE "actif"=1;';
             const result = await db.query(query);
-            if(result.rowCount < 1){
-                return {"message": "Pas de résultat."};
-            }
+            
             return result.rows;
         } catch (error) {
             console.log(error);

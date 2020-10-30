@@ -82,13 +82,7 @@ module.exports = tagController = {
         try {
             // I search all tags on data
             const tags = await Tag.findAll();
-            if(tags) {
-                // If i result, i send all tags
-                return res.send(tags);
-            }else{
-                // or i send an error
-                return res.status(403).send({"error" : "Une erreur s'est produite."});
-            }
+            return res.send(tags)
         } catch (error) {
             console.log(error);
             res.send(error);

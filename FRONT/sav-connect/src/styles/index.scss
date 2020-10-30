@@ -356,6 +356,14 @@ body {
     text-align: center;
     font-weight: bold;
     margin: 5px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .fa, .far, .fas {
+    &:hover {
+      font-size: 1.5em;
+    }
   }
 }
 

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Segment, Header, Form, Button } from 'semantic-ui-react';
+import { Segment, Header, Form, Button, Confirm } from 'semantic-ui-react';
 import { TwitterPicker } from 'react-color';
 
 import axios from 'axios';
 
 const Taglist = () => {
 
+    /**Show form to edit tag */
     const ShowDiv = () => {
         /**React color state */
         const [color, setColor] = useState();
@@ -28,7 +29,7 @@ const Taglist = () => {
                     console.log(err)
                 })
         };
-           
+           /**Form to edit tag */
         return (
             <div className='tag-form'>
                         <Header as='h2'>Modifier le Tag</Header>
@@ -61,37 +62,64 @@ const Taglist = () => {
                     </div>
         );
     };
-    
-
     /**Display div to show form edit */
     const [ showResults, setShowResults ] = useState(false);
 
+    /**Get tag id on double click */
     const [ getId, setGetId ] = useState('');
 
+    /**On doucble click, change border color and show edit form */
     const onClick = (e) => {
         e.target.style.border = 'solid red 2px';
         setShowResults(true);
-
         /**Get tag id */
         setGetId(e.target.id);
-        
     };
 
+    /**Handle confirm window */
+    const [ getOpen, setGetOpen ] = useState(false);
+    const [ getId2, setGetId2 ] = useState('');
+    
+    /**Function to remove tag */
+    const onClickRemove = (e) => {
+        setGetId2(e.target.id);
+        setGetOpen(true)
+    };
+
+    const handleConfirm = () => {
+        const tagId2 = getId2
+        axios.get(`tag/archive/${tagId2}`)
+        .then((res) => {
+            console.log(res);
+            window.location.reload(false);
+            console.log('supprimé')
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+        setGetOpen(false)
+    };
+    const handleCancel = () => {
+        setGetOpen(false);
+    }
+
+    /**Show all tags */
     const [ tagData, setTagData ] = useState([]);
     const Tags = () => {
         axios.get('tags')
             .then((res) => {
-                setTagData(res.data)
+                setTagData(res.data);
             })
             .catch((err)=> {
-                console.log(err)
+                console.log(err);
             })
             return Tags;
     };
-    const getTags = tagData.map((tag)=> 
-        <div className='tag' key={tag.id} style={{backgroundColor: `${tag.color}` }} onDoubleClick={onClick} id={tag.id} >{tag.title}</div>);
-    
 
+
+    const getTags = tagData.map((tag)=> 
+        <div className='tag' key={tag.id} style={{backgroundColor: `${tag.color}` }} onDoubleClick={onClick} id={tag.id} >{tag.title}<div onClick={onClickRemove} id={tag.id} ><i className="far fa-times-circle"></i></div></div>);
+    
     useEffect(Tags, []);
 
     return (
@@ -101,6 +129,14 @@ const Taglist = () => {
                 <p>Pour modifier un tag, double cliquez dessus!</p>
                 <div className='tags'>{getTags}</div>
                 { showResults ? <ShowDiv /> : null}
+                <Confirm 
+                    open={getOpen}
+                    onCancel={handleCancel}
+                    onConfirm={handleConfirm}
+                    content=' Êtes-vous sûr de vouloir supprimer ce tag?'
+                    cancelButton='Annuler'
+                    confirmButton='OK'
+                />
             </Segment>
         </div>
     )
