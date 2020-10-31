@@ -125,6 +125,7 @@ const RepairSheet = () => {
                         <List.Item><span className='repair-span'>Téléphone: </span> {customerData.phone} </List.Item>
                         { !customerData.phone_two ? <p></p> : <List.Item><span className='repair-span'>Téléphone 2: </span> {customerData.phone_two} </List.Item>}
                         { !customerData.mail ? <p></p> : <List.Item><span className='repair-span'>Mail: </span> {customerData.mail} </List.Item>}
+                        { !devisData.recall_devis ? <p></p> : <List.Item><span className='repair-span'>Nombre de rappels au client: </span> {devisData.recall_devis} </List.Item>}
                     </List>
                 </div>
                 <div className='repair-sheet-repair'>
@@ -132,8 +133,8 @@ const RepairSheet = () => {
                     <List>
                     <List.Item>
                             <List.Content>
-                                { !deviceData.interval_repair ? <p></p> : <List.Header>Délai maximum de réparation:</List.Header> }
-                                <List.Description> {interval_repair.toLocaleDateString('fr-FR')} </List.Description>
+                                { !deviceData.interval_repair ? null : <List.Header>Délai maximum de réparation:</List.Header> }
+                                <List.Description> { !deviceData.interval_repair ? null : interval_repair.toLocaleDateString('fr-FR')} </List.Description>
                             </List.Content>
                         </List.Item>
                         <List.Item>
@@ -151,7 +152,7 @@ const RepairSheet = () => {
                         <List.Item>
                             <List.Content>
                                 { !interData.date_intervention ? <p></p> : <List.Header>Date d'intervention</List.Header>}
-                                <List.Description> {date_intervention.toLocaleDateString('fr-FR')} </List.Description>
+                                <List.Description> {!interData.date_intervention ? null : date_intervention.toLocaleDateString('fr-FR')} </List.Description>
                             </List.Content>
                         </List.Item>
                     </List>
@@ -168,13 +169,19 @@ const RepairSheet = () => {
                         <List.Item>
                             <List.Content>
                                 { !devisData.date_devis ? <p></p> : <List.Header>Date devis : </List.Header>}
-                                <List.Description>{date_devis.toLocaleDateString('fr-FR')} </List.Description>
+                                <List.Description>{!devisData.date_devis ? null : date_devis.toLocaleDateString('fr-FR')} </List.Description>
                             </List.Content>
                         </List.Item>
                         <List.Item>
                             <List.Content>
                                 { !devisData.amount_devis ? <p></p> : <List.Header>Montant devis</List.Header>}
                                 <List.Description className='amount'>{devisData.amount_devis}{ !devisData.amount_devis ? <p></p> : <p>€</p>}</List.Description>
+                            </List.Content>
+                        </List.Item>
+                        <List.Item>
+                            <List.Content>
+                                { !devisData.amount_diag ? <p></p> : <List.Header>Montant total</List.Header>}
+                                <List.Description className='amount'>{devisData.amount_diag}{ !devisData.amount_diag ? <p></p> : <p>€</p>}</List.Description>
                             </List.Content>
                         </List.Item>
                     </List>

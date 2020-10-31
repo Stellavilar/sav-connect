@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Form } from 'semantic-ui-react';
+import { Button, Form, Checkbox } from 'semantic-ui-react';
 import { useParams } from 'react-router';
 import Datetime from 'react-datetime';
 import axios from 'axios';
@@ -10,9 +10,14 @@ import '../../styles/dateTime.scss';
 const StepTwoForm = () => {
     let {order_number} = useParams();
 
+    /**Checkbox state */
+    const [checkValue, setCheckValue ] = useState('');
+    const handleChangeCheckbox = (e, { value }) => setCheckValue({value});
+
+
     /**Form */
     const [ deviceData, setDeviceData ] = useState('');
-    const [ panneData, setPanneData ] = useState('')
+    const [ panneData, setPanneData ] = useState('');
 
     /**Date time hooks */
     const [ selectedDate, setSelectedDate ] = useState(null);
@@ -24,7 +29,7 @@ const StepTwoForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.patch(`repairSheet/stepTwo/${order_number}`, {panne: panneData, device_brand: deviceData , interval_repair: selectedDate._d } ,{
+        axios.patch(`repairSheet/stepTwo/${order_number}`, { panne: checkValue.value + panneData, device_brand: deviceData , interval_repair: selectedDate._d } ,{
             withCredentials: true,
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token')
@@ -52,7 +57,15 @@ const StepTwoForm = () => {
                 </Form.Field>
                 <Form.Field>
                     <label>Descriptif Panne</label>
-                    <textarea
+                    <Checkbox
+                        radio
+                        label='exemple de panne'
+                        name='panne'
+                        value='exemple de panne / '
+                        checked={checkValue.value === 'exemple de panne / '}
+                        onChange={handleChangeCheckbox}
+                    />                    
+                        <textarea
                         name='panne'
                         onChange={(e) => setPanneData(e.target.value)}
                         />

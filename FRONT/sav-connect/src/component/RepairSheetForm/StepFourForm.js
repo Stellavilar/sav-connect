@@ -11,17 +11,14 @@ import '../../styles/dateTime.scss';
 const StepFourForm = () => {
     let {order_number} = useParams();
 
-    const [ repairData, setRepairData ] = useState ({
-        amount_devis: '',
-        recall_devis: '',
-    });
+    /**Form hooks */
+    const [ diag, setDiag ] = useState('');
+    const [ recall, setRecall ] = useState('');
+    const [ devis, setDevis ] = useState('');
 
     /**Date time hooks */
     const [ selectedDate, setSelectedDate ] = useState(null);
 
-    const handleChange = (e) => {
-        setRepairData({...repairData, [e.target.name] : e.target.value});
-    };
     /**Handle checkbox */
     const [ isAccepted, setIsAccepted] = useState('');
     const handleChangeCheckbox = (e, { value }) => setIsAccepted({value});
@@ -30,9 +27,10 @@ const StepFourForm = () => {
     const handleClick = () => {
         window.location.reload(false);
     };
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.patch(`repairSheet/stepFour/${order_number}`, {repairData , devis_is_accepted : isAccepted.value , date_devis: selectedDate._d, } , {
+        axios.patch(`repairSheet/stepFour/${order_number}`, { amount_devis: devis, amount_diag: diag, recall_devis: recall , devis_is_accepted : isAccepted.value , date_devis: selectedDate._d, } , {
             withCredentials: true,
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token')
@@ -89,7 +87,7 @@ const StepFourForm = () => {
                     <input
                         type='number'
                         name='amount_devis'
-                        onChange={handleChange}
+                        onChange={(e) => setDevis(e.target.value)}
                         />
                 </Form.Field>
                 <Form.Field>
@@ -97,7 +95,7 @@ const StepFourForm = () => {
                     <input
                         type='number'
                         name='amount_diag'
-                        onChange={handleChange}
+                        onChange={(e) => setDiag(e.target.value)}
                         />
                 </Form.Field>
                 <Form.Field>
@@ -105,7 +103,7 @@ const StepFourForm = () => {
                     <input
                         type='number'
                         name='recall_devis'
-                        onChange={handleChange}
+                        onChange={(e) => setRecall(e.target.value)}
                         />
                 </Form.Field>
                 <div className='buttons'>
