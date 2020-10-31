@@ -1,23 +1,30 @@
 import React, { useState } from 'react'
 import { Button, Form, Checkbox } from 'semantic-ui-react';
 import { useParams } from 'react-router';
+import Datetime from 'react-datetime';
 import axios from 'axios';
+
+import 'moment/locale/fr';
+import '../../styles/dateTime.scss';
+
 
 const StepFourForm = () => {
     let {order_number} = useParams();
 
     const [ repairData, setRepairData ] = useState ({
-        date_devis: '',
         amount_devis: '',
         recall_devis: '',
     });
+
+    /**Date time hooks */
+    const [ selectedDate, setSelectedDate ] = useState(null);
 
     const handleChange = (e) => {
         setRepairData({...repairData, [e.target.name] : e.target.value});
     };
     /**Handle checkbox */
     const [ isAccepted, setIsAccepted] = useState('');
-    const handleChangeCheckbox = (e, { value }) => setIsAccepted({ value });
+    const handleChangeCheckbox = (e, { value }) => setIsAccepted({value});
 
     /**Handle click on cancel button*/
     const handleClick = () => {
@@ -25,7 +32,7 @@ const StepFourForm = () => {
     };
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.patch(`repairSheet/stepFour/${order_number}`, {repairData , devis_is_accepted : isAccepted} , {
+        axios.patch(`repairSheet/stepFour/${order_number}`, {repairData , devis_is_accepted : isAccepted.value , date_devis: selectedDate._d, } , {
             withCredentials: true,
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token')
@@ -33,7 +40,7 @@ const StepFourForm = () => {
         })
         .then((res) => {
             console.log(res)
-            console.log('validé')
+            
         })
         .catch((err) => {
             console.log(err);
@@ -68,11 +75,14 @@ const StepFourForm = () => {
                 </Form.Field>
                 <Form.Field>
                     <label>Date du devis</label>
-                    <input
-                        type='text'
-                        name='date_devis'
-                        onChange={handleChange}
-                        />
+                        <Datetime
+                            locale="fr"
+                            utc={true}
+                            placeholder="Saisissez une date" 
+                            name="date_devis" 
+                            value={selectedDate}
+                            onChange={date => setSelectedDate(date)}
+                            />
                 </Form.Field>
                 <Form.Field>
                     <label>Montant du devis</label>

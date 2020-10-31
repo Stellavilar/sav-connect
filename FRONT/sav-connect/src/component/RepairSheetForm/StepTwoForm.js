@@ -1,21 +1,22 @@
 import React, { useState } from 'react'
 import { Button, Form } from 'semantic-ui-react';
 import { useParams } from 'react-router';
+import Datetime from 'react-datetime';
 import axios from 'axios';
+
+import 'moment/locale/fr';
+import '../../styles/dateTime.scss';
 
 const StepTwoForm = () => {
     let {order_number} = useParams();
 
     /**Form */
-    const [ repairData, setRepairData ] = useState({
-        device_brand :'',
-        interval_repair : '',
-        panne : '',
-    });
+    const [ deviceData, setDeviceData ] = useState('');
+    const [ panneData, setPanneData ] = useState('')
+
+    /**Date time hooks */
+    const [ selectedDate, setSelectedDate ] = useState(null);
     
-    const handleChange = (e) => {
-        setRepairData({...repairData, [e.target.name] : e.target.value});
-    };
      /**Handle click on cancel button*/
      const handleClick = () => {
         window.location.reload(false);
@@ -23,7 +24,7 @@ const StepTwoForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.patch(`repairSheet/stepTwo/${order_number}`, repairData , {
+        axios.patch(`repairSheet/stepTwo/${order_number}`, {panne: panneData, device_brand: deviceData , interval_repair: selectedDate._d } ,{
             withCredentials: true,
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token')
@@ -46,22 +47,26 @@ const StepTwoForm = () => {
                     <input
                         type='text'
                         name='device_brand'
-                        onChange={handleChange}
+                        onChange={(e) => setDeviceData(e.target.value)}
                         />
                 </Form.Field>
                 <Form.Field>
                     <label>Descriptif Panne</label>
-                    <input
+                    <textarea
                         name='panne'
-                        onChange={handleChange}
+                        onChange={(e) => setPanneData(e.target.value)}
                         />
                 </Form.Field>
                 <Form.Field>
                     <label>Délai de réparation</label>
-                    <input
-                        name='interval_repair'
-                        onChange={handleChange}
-                        />
+                    <Datetime
+                            locale="fr"
+                            utc={true}
+                            placeholder="Saisissez une date" 
+                            name="date_devis" 
+                            value={selectedDate}
+                            onChange={date => setSelectedDate(date)}
+                            />
                 </Form.Field>
                 <div className='buttons'>
                     <Button color='teal'>Valider</Button>

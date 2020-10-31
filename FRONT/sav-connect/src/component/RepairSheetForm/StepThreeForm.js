@@ -1,16 +1,20 @@
 import React, { useState } from 'react'
 import { Button, Form } from 'semantic-ui-react';
 import { useParams } from 'react-router';
+import Datetime from 'react-datetime';
 import axios from 'axios';
+
+import 'moment/locale/fr';
+import '../../styles/dateTime.scss';
 
 const StepThreeForm = () => {
     let {order_number} = useParams();
 
-    const [ repairData, setRepairData ] = useState ({ intervention:'', date_intervention:'' });
+    const [ getInter, setGetInter ] = useState ('');
 
-    const handleChange = (e) => {
-        setRepairData({...repairData, [e.target.name] : e.target.value});
-    };
+    /**select date */
+    const [ selectedDate, setSelectedDate ] = useState(null);
+
     /**Handle click on cancel button*/
     const handleClick = () => {
         window.location.reload(false);
@@ -18,7 +22,7 @@ const StepThreeForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.patch(`repairSheet/stepThree/${order_number}`, repairData , {
+        axios.patch(`repairSheet/stepThree/${order_number}`, { intervention: getInter , date_intervention: selectedDate._d } , {
             withCredentials: true,
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token')
@@ -43,16 +47,19 @@ const StepThreeForm = () => {
                     <input
                         type='text'
                         name='intervention'
-                        onChange={handleChange}
+                        onChange={(e) => setGetInter(e.target.value)}
                         />
                 </Form.Field>
                 <Form.Field>
                     <label>Date d'ntervention</label>
-                    <input
-                        type='text'
-                        name='date_intervention'
-                        onChange={handleChange}
-                        />
+                    <Datetime
+                            locale="fr"
+                            utc={true}
+                            placeholder="Saisissez une date" 
+                            name="date_devis" 
+                            value={selectedDate}
+                            onChange={date => setSelectedDate(date)}
+                            />
                 </Form.Field>
                 <div className='buttons'>
                     <Button color='teal'>Valider</Button>

@@ -84,6 +84,10 @@ const RepairSheet = () => {
     useEffect(clientData, []);
 
 
+    const date_devis = new Date(devisData.date_devis);
+    const interval_repair = new Date(deviceData.interval_repair);
+    const date_intervention = new Date(interData.date_intervention);
+
 
     return (
         <div className='repair-sheet'>
@@ -126,6 +130,12 @@ const RepairSheet = () => {
                 <div className='repair-sheet-repair'>
                     <Header as='h3'>Informations Réparation</Header>
                     <List>
+                    <List.Item>
+                            <List.Content>
+                                { !deviceData.interval_repair ? <p></p> : <List.Header>Délai maximum de réparation:</List.Header> }
+                                <List.Description> {interval_repair.toLocaleDateString('fr-FR')} </List.Description>
+                            </List.Content>
+                        </List.Item>
                         <List.Item>
                             <List.Content>
                                 { !deviceData.panne ? <p></p> : <List.Header>Description panne</List.Header> }
@@ -141,7 +151,7 @@ const RepairSheet = () => {
                         <List.Item>
                             <List.Content>
                                 { !interData.date_intervention ? <p></p> : <List.Header>Date d'intervention</List.Header>}
-                                <List.Description> {interData.date_intervention} </List.Description>
+                                <List.Description> {date_intervention.toLocaleDateString('fr-FR')} </List.Description>
                             </List.Content>
                         </List.Item>
                     </List>
@@ -157,8 +167,8 @@ const RepairSheet = () => {
                         </List.Item>
                         <List.Item>
                             <List.Content>
-                                { !devisData.date_devis ? <p></p> : <List.Header>Date devis</List.Header>}
-                                <List.Description> {devisData.date_devis} </List.Description>
+                                { !devisData.date_devis ? <p></p> : <List.Header>Date devis : </List.Header>}
+                                <List.Description>{date_devis.toLocaleDateString('fr-FR')} </List.Description>
                             </List.Content>
                         </List.Item>
                         <List.Item>

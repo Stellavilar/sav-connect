@@ -24,7 +24,9 @@
   },
   "homepage": "https://github.com/Stellavilar/sav-connect#readme",
   "dependencies": {
+    "moment": "^2.29.1",
     "react-color": "^2.19.3",
+    "react-datetime": "^3.0.4",
     "react-qr-code": "^1.0.3",
     "react-to-print": "^2.10.3"
   }
