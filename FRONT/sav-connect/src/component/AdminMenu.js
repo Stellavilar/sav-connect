@@ -46,7 +46,7 @@ const AdminMenu = () => {
                 </Dropdown>
                 <Dropdown item text='Pannes'>
                     <Dropdown.Menu>
-                        <Dropdown.Item>Créer un modèle de panne</Dropdown.Item>
+                        <Dropdown.Item onClick={()=> history.push('/PanneForm')}>Créer un modèle de panne</Dropdown.Item>
                         <Dropdown.Item>Liste des modèles de pannes</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>

@@ -14,6 +14,7 @@ import AdminMenu from './AdminMenu';
 import WorkerMenu from './WorkerMenu';
 import TagForm from'./TagForm';
 import TagList from './TagList';
+import PanneForm from './PanneForm';
 
 const App = () => {
 
@@ -102,6 +103,15 @@ const App = () => {
           <div className='main-page'>
           {isAdmin === 'true' ? <AdminMenu/> : <WorkerMenu/>}
           <TagList /> 
+          </div>
+          </>
+        }>
+        </Route>
+        <Route exact path="/PanneForm" render={()=>!token ? <Redirect to='/'/> :  <>
+          <Header />
+          <div className='main-page'>
+          {isAdmin === 'true' ? <AdminMenu/> : <WorkerMenu/>}
+          <PanneForm /> 
           </div>
           </>
         }>

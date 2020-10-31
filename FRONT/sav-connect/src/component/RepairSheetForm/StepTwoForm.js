@@ -14,14 +14,13 @@ const StepTwoForm = () => {
     const [checkValue, setCheckValue ] = useState('');
     const handleChangeCheckbox = (e, { value }) => setCheckValue({value});
 
-
     /**Form */
     const [ deviceData, setDeviceData ] = useState('');
     const [ panneData, setPanneData ] = useState('');
 
     /**Date time hooks */
     const [ selectedDate, setSelectedDate ] = useState(null);
-    
+
      /**Handle click on cancel button*/
      const handleClick = () => {
         window.location.reload(false);
@@ -37,7 +36,7 @@ const StepTwoForm = () => {
         })
         .then((res) => {
             console.log(res)
-            console.log('validé')
+            
         })
         .catch((err) => {
             console.log(err);
