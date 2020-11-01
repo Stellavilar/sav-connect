@@ -428,6 +428,25 @@ body {
       }
   }
 }
+.panne-list {
+  min-height: 100vh;
+  padding: 25px;
+  width: 100vw;
+
+    .ui.segment.panne-segment {
+      display: flex;
+      justify-content: space-between;
+    }
+    i {
+      margin-right: 11px;
+      font-size: 1.2em;
+      &:hover {
+        font-size: 1.5em;
+        color: sienna;
+      }
+    }
+    
+}
 
 
 // Mobile version

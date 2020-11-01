@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Button, Form, Checkbox } from 'semantic-ui-react';
 import { useParams } from 'react-router';
 import Datetime from 'react-datetime';
@@ -11,7 +11,7 @@ const StepTwoForm = () => {
     let {order_number} = useParams();
 
     /**Checkbox state */
-    const [checkValue, setCheckValue ] = useState('');
+    const [checkValue, setCheckValue ] = useState(false);
     const handleChangeCheckbox = (e, { value }) => setCheckValue({value});
 
     /**Form */
@@ -25,6 +25,26 @@ const StepTwoForm = () => {
      const handleClick = () => {
         window.location.reload(false);
     };
+    /**Get pannes possibilities */
+    const [ getPanne, setGetPanne ] = useState([]);
+    const getPannes = () =>{
+        axios.get('pannes')
+            .then((res)=> {
+                setGetPanne(res.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+        return getPannes;
+    };
+    const showPannes = getPanne.map((panne) => <Checkbox
+                                                    key={panne.id}
+                                                    label={panne.title}
+                                                    name='panne'
+                                                    value={panne.title + ' / '}
+                                                    checked={checkValue.value === panne.title + ' / '}
+                                                    onChange={handleChangeCheckbox}
+                                                />)
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -42,6 +62,9 @@ const StepTwoForm = () => {
             console.log(err);
         })
     };
+
+useEffect(getPannes, []);
+
     return (
         <div className='tab-form'>
             <Form
@@ -56,14 +79,7 @@ const StepTwoForm = () => {
                 </Form.Field>
                 <Form.Field>
                     <label>Descriptif Panne</label>
-                    <Checkbox
-                        radio
-                        label='exemple de panne'
-                        name='panne'
-                        value='exemple de panne / '
-                        checked={checkValue.value === 'exemple de panne / '}
-                        onChange={handleChangeCheckbox}
-                    />                    
+                        {showPannes}
                         <textarea
                         name='panne'
                         onChange={(e) => setPanneData(e.target.value)}

@@ -67,7 +67,7 @@ router.get('/panne/:id', panneController.findOne);
 router.patch('/panne/edit/:id', panneController.edit);
 router.get('/:idConfigPanne/sav/:idSav', panneController.addConfigPanneOnSav);
 router.get('/remove/:idPanne/sav/:idSav', panneController.removeConfigPanneOnSav);
-router.get('/archive/:id', configPanneController.archive);
+router.get('/panne/archive/:id', panneController.archive);
 
 /**Action routes */
 const actionController = require ('../controllers/actionController');
