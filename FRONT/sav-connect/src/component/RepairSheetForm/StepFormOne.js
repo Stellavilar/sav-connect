@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { Button, Header, Form, Select } from 'semantic-ui-react';
+import { Button, Header, Form } from 'semantic-ui-react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
@@ -7,15 +7,10 @@ import axios from 'axios';
 const StepFormOne = ({clients}) => {
     const history = useHistory();
     /**Select options */
-    const getOptions = clients.map((client) =>      
-            <div className='client-options' key={client.id} >
-                <div className='row-options' value={client.lastname}>
-                    <div>{client.lastname}</div>
-                    <div>{client.firstname}</div>
-                    <div>{client.phone}</div>
-                    <div>{client.mail}</div>
-                </div>
-            </div>
+    const getOptions = clients.map((client) =>   
+                <option value={client.id} key={client.id} >
+                    {client.lastname +' '+ client.firstname +' '+ client.phone}
+                </option>
         );
     ;
     /**Form */
@@ -60,7 +55,7 @@ const StepFormOne = ({clients}) => {
 
     useEffect(() => {
         const formValidation = () => {
-            if(repairData.lastname === "" || repairData.firstname === "" || repairData.phone === "" || repairData.device_name === ""){
+            if(repairData.device_name === ""){
                 setErrorMessage('* Vous n\'avez pas complété tous les champs nécessaires')
                 return true
             }else{
@@ -77,14 +72,14 @@ const StepFormOne = ({clients}) => {
 
     return (
         <div className='repair-sheet-form'>
-            <Header as='h2'>Choisissez un client</Header>
-                <Select placeholder='Choisissez un client' options={getOptions}  />
-            <Header as='h2'>Ou Créez un nouveau client</Header>
             <Form
                 onSubmit={handleSubmit}
             >
+                <Header as='h2'>Choisissez un client</Header>
+                <select name='customer_id' onChange={handleChange} placeholder='Sélectionnez un client'><option>Sélectionnez un client</option>{getOptions}</select>
+                <Header as='h2'>Ou Créez un nouveau client</Header>
                 <Form.Field>
-                    <label>Nom</label>
+                    <label>Nom *</label>
                     <input
                         type='text'
                         name='lastname'
@@ -92,7 +87,7 @@ const StepFormOne = ({clients}) => {
                         />
                 </Form.Field>
                 <Form.Field>
-                    <label>Prénom</label>
+                    <label>Prénom *</label>
                     <input
                         type='text'
                         name='firstname'
@@ -108,7 +103,7 @@ const StepFormOne = ({clients}) => {
                         />
                 </Form.Field>
                 <Form.Field>
-                    <label>Téléphone</label>
+                    <label>Téléphone *</label>
                     <input
                         type='text'
                         name='phone'
@@ -124,7 +119,7 @@ const StepFormOne = ({clients}) => {
                         />
                 </Form.Field>
                 <Form.Field>
-                    <label>Nom de l'appareil à réparer</label>
+                    <label>Nom de l'appareil à réparer *</label>
                     <input
                         type='text'
                         name='device_name'
@@ -136,6 +131,7 @@ const StepFormOne = ({clients}) => {
                     <Button color='teal' disabled={disable}>Valider</Button>
                     <Button color='red' onClick={handleClickButton}>Annuler</Button>
                 </div>
+                * Champs obligatoires
             </Form>
         </div>
     );

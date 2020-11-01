@@ -31,11 +31,15 @@ const Login = () => {
                 if(res.data.isAdmin === true){
                     history.push('/dashboard');
                     localStorage.setItem('token', res.data.token);
-                    localStorage.setItem('isAdmin', true)
+                    localStorage.setItem('isAdmin', true);
+                    window.location.reload(false);
+
                 }else if(res.data.isAdmin === false){
                     history.push('/dashboard');
                     localStorage.setItem('token', res.data.token);
-                    localStorage.setItem('isAdmin', false)
+                    localStorage.setItem('isAdmin', false);
+                    window.location.reload(false);
+
                 }
             }else{
                 setErrorMessage(' * Identifiants incorrects')
