@@ -40,8 +40,8 @@ const AdminMenu = () => {
                 </Dropdown>
                 <Dropdown item text='Actions'>
                     <Dropdown.Menu>
-                        <Dropdown.Item>Créer une action</Dropdown.Item>
-                        <Dropdown.Item>Liste des actions</Dropdown.Item>
+                        <Dropdown.Item onClick={()=> history.push('/actionForm')}>Créer une action</Dropdown.Item>
+                        <Dropdown.Item onClick={()=> history.push('/actions')}>Liste des actions</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
                 <Dropdown item text='Pannes'>

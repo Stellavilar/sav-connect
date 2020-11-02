@@ -171,7 +171,7 @@ ALTER TABLE "order_detail" ADD COLUMN "amount_diag" text;
 ALTER TABLE "order_detail" ADD COLUMN "devis_is_accepted" text;
 ALTER TABLE "product" ADD UNIQUE (ref);
 ALTER TABLE "order_detail" ADD COLUMN "is-pay" text;
-ALTER TABLE "action" ADD COLUMN "is-blocked" int DEFAULT 0 NOT NULL;
+ALTER TABLE "action" ADD COLUMN "is_blocked" int DEFAULT 0 NOT NULL;
 ALTER TABLE "action" ADD COLUMN "archive" int DEFAULT 0 NOT NULL;
 CREATE SEQUENCE "order_number";
 
