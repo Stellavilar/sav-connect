@@ -70,7 +70,6 @@ const PanneList = () => {
                 .catch((err) => {
                     console.log(err)
                 })
-
         };
 
         return (

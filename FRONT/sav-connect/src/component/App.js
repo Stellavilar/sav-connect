@@ -16,6 +16,10 @@ import TagForm from'./TagForm';
 import TagList from './TagList';
 import PanneForm from './PanneForm';
 import PanneList from './PanneList';
+import ClientList from './Customer/ClientList';
+import Client from './Customer/Client';
+import ClientForm from './Customer/ClientForm';
+import ClientEdit from './Customer/ClientEdit';
 
 const App = () => {
 
@@ -122,6 +126,42 @@ const App = () => {
           <div className='main-page'>
           {isAdmin === 'true' ? <AdminMenu/> : <WorkerMenu/>}
           <PanneList /> 
+          </div>
+          </>
+        }>
+        </Route>
+        <Route exact path="/ClientList" render={()=>!token ? <Redirect to='/'/> :  <>
+          <Header />
+          <div className='main-page'>
+          {isAdmin === 'true' ? <AdminMenu/> : <WorkerMenu/>}
+          <ClientList  clients={clients}/> 
+          </div>
+          </>
+        }>
+        </Route>
+        <Route exact path="/client/:id" render={()=>!token ? <Redirect to='/'/> :  <>
+          <Header />
+          <div className='main-page'>
+          {isAdmin === 'true' ? <AdminMenu/> : <WorkerMenu/>}
+          <Client/> 
+          </div>
+          </>
+        }>
+        </Route>
+        <Route exact path="/clientform" render={()=>!token ? <Redirect to='/'/> :  <>
+          <Header />
+          <div className='main-page'>
+          {isAdmin === 'true' ? <AdminMenu/> : <WorkerMenu/>}
+          <ClientForm/> 
+          </div>
+          </>
+        }>
+        </Route>
+        <Route exact path="/clientEdit/:id" render={()=>!token ? <Redirect to='/'/> :  <>
+          <Header />
+          <div className='main-page'>
+          {isAdmin === 'true' ? <AdminMenu/> : <WorkerMenu/>}
+          <ClientEdit/> 
           </div>
           </>
         }>

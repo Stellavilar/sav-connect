@@ -42,6 +42,7 @@ const Taglist = () => {
                                     type='text'
                                     name='title'
                                     onChange={(e)=> setGetTitle(e.target.value)}
+                                    placeholder={getValue}
                                     />
                             </Form.Field>
     
@@ -69,8 +70,10 @@ const Taglist = () => {
     const [ getId, setGetId ] = useState('');
 
     /**On doucble click, change border color and show edit form */
+    const [ getValue, setGetValue ] = useState('')
     const onClick = (e) => {
         e.target.style.border = 'solid red 2px';
+        setGetValue(e.target.title)
         setShowResults(true);
         /**Get tag id */
         setGetId(e.target.id);
@@ -118,7 +121,7 @@ const Taglist = () => {
 
 
     const getTags = tagData.map((tag)=> 
-        <div className='tag' key={tag.id} style={{backgroundColor: `${tag.color}` }} onDoubleClick={onClick} id={tag.id} >{tag.title}<div onClick={onClickRemove}  ><i className="far fa-times-circle" id={tag.id}></i></div></div>);
+        <div className='tag' key={tag.id} style={{backgroundColor: `${tag.color}` }} onDoubleClick={onClick} id={tag.id} title={tag.title} >{tag.title}<div onClick={onClickRemove}  ><i className="far fa-times-circle" id={tag.id}></i></div></div>);
     
     useEffect(Tags, []);
 

@@ -119,7 +119,7 @@ const StepFormOne = ({clients}) => {
                         />
                 </Form.Field>
                 <Form.Field>
-                    <label>Nom de l'appareil à réparer *</label>
+                    <Header as='h2'>Nom de l'appareil à réparer *</Header>
                     <input
                         type='text'
                         name='device_name'

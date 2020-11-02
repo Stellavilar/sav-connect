@@ -17,8 +17,8 @@ const history = useHistory();
                 </Dropdown>
                 <Dropdown item text='Clients'>
                     <Dropdown.Menu>
-                        <Dropdown.Item>Créer une fiche client</Dropdown.Item>
-                        <Dropdown.Item>Liste des clients</Dropdown.Item>
+                        <Dropdown.Item onClick={()=> history.push('/clientForm')}>Créer une fiche client</Dropdown.Item>
+                        <Dropdown.Item onClick={()=> history.push('/ClientList')}>Liste des clients</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
                 <Dropdown item text='Archives'>
