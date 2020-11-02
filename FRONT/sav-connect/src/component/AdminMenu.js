@@ -28,8 +28,8 @@ const AdminMenu = () => {
                 </Dropdown>
                 <Dropdown item text='Employés'>
                     <Dropdown.Menu>
-                        <Dropdown.Item>Créer une fiche employé</Dropdown.Item>
-                        <Dropdown.Item>Liste des employés</Dropdown.Item>
+                        <Dropdown.Item onClick={()=> history.push('/workerForm')}>Créer une fiche employé</Dropdown.Item>
+                        <Dropdown.Item onClick={()=> history.push('/workerList')}>Liste des employés</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
                 <Dropdown item text='Tags'>

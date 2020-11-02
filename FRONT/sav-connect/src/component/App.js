@@ -20,6 +20,10 @@ import ClientList from './Customer/ClientList';
 import Client from './Customer/Client';
 import ClientForm from './Customer/ClientForm';
 import ClientEdit from './Customer/ClientEdit';
+import WorkerForm from './Worker/WorkerForm';
+import WorkerList from './Worker/WorkerList';
+import Worker from './Worker/Worker';
+import WorkerEdit from './Worker/WorkerEdit';
 
 const App = () => {
 
@@ -52,8 +56,23 @@ const App = () => {
       return allCustomers;
   };
 
+  //Get all workers
+  const [ workers, setWorkers ] = useState([]);
+  const allWorkers = () => {
+    axios.get('users')
+      .then((res) => {
+        setWorkers(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      return allWorkers;
+  };
+
   useEffect(repairsSheet, []);
   useEffect(allCustomers, []);
+  useEffect(allWorkers, []);
+
 
   return (
       <div className='App'>
@@ -162,6 +181,42 @@ const App = () => {
           <div className='main-page'>
           {isAdmin === 'true' ? <AdminMenu/> : <WorkerMenu/>}
           <ClientEdit/> 
+          </div>
+          </>
+        }>
+        </Route>
+        <Route exact path="/workerForm" render={()=>!token ? <Redirect to='/'/> :  <>
+          <Header />
+          <div className='main-page'>
+          {isAdmin === 'true' ? <AdminMenu/> : <WorkerMenu/>}
+          <WorkerForm/> 
+          </div>
+          </>
+        }>
+        </Route>
+        <Route exact path="/workerList" render={()=>!token ? <Redirect to='/'/> :  <>
+          <Header />
+          <div className='main-page'>
+          {isAdmin === 'true' ? <AdminMenu/> : <WorkerMenu/>}
+          <WorkerList workers={workers}/> 
+          </div>
+          </>
+        }>
+        </Route>
+        <Route exact path="/user/:id" render={()=>!token ? <Redirect to='/'/> :  <>
+          <Header />
+          <div className='main-page'>
+          {isAdmin === 'true' ? <AdminMenu/> : <WorkerMenu/>}
+          <Worker /> 
+          </div>
+          </>
+        }>
+        </Route>
+        <Route exact path="/workerEdit/:id" render={()=>!token ? <Redirect to='/'/> :  <>
+          <Header />
+          <div className='main-page'>
+          {isAdmin === 'true' ? <AdminMenu/> : <WorkerMenu/>}
+          <WorkerEdit /> 
           </div>
           </>
         }>
