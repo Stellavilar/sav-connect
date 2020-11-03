@@ -152,6 +152,43 @@ module.exports = RepairSheetController = {
         }
     },
 
+    archive: async (req, res) => {
+        try {
+            const id = req.params.id;
+            // If no id, i send an error with message
+            if(!id) {
+                return res.status('403').send({"error": "Il vous manque un paramètre pour effectuer votre demande."});
+            }
+
+            const result = await RepairSheet.archive(id);
+            if(result) {
+                let headerAuth = req.headers.authorization;
+                // On récupère l'id stocké dans le code
+                const userId = jwt.getUserId(headerAuth);
+                await Action.addActionOnSav(3,id,userId);
+                res.send(true);
+            }else{
+                res.send(false);
+            }
+        } catch (error) {
+            console.log(error);
+            return res.status(403).send(error);
+        }        
+    },
+    findAllArchives: async (req,res) => {
+        try {
+            const order_repairs = await RepairSheet.findAllArchives();
+            if(order_repairs) {
+                return res.send(order_repairs);
+            }else{
+                return res.status(403).send({"error" : "Une erreur s'est produite."});
+            }
+        } catch (error) {
+            console.log(error);
+            res.send(error);
+        }
+    },
+
     formStepOne: async (req,res) => {
         try {
             if(!req.body){

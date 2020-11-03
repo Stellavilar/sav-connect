@@ -59,7 +59,7 @@ module.exports = class RepairSheets {
 
     static async findAll() {
         try {
-            const query = 'SELECT * FROM "order_repair";';
+            const query = 'SELECT * FROM "order_repair" WHERE actif=1;';
             const result = await db.query(query);
 
             for(let i = 0; i < result.rowCount; i++){
@@ -343,6 +343,43 @@ module.exports = class RepairSheets {
             }
             return result.rows;
         } catch (error) {
+            console.log(error);
+            return false;
+        }
+    }
+
+    /**Archive */
+    static async archive(id) {
+        try {
+            const query = 'UPDATE "order_repair" SET actif=0, updated_at=now() WHERE id=$1;';
+            const values = [id];
+            const result = await db.query(query,values);
+            if(result.rowCount == 1) {
+                return true;
+            }else{
+                return false;
+            }
+        } catch (error) {
+            console.log(error);
+            return error;
+        }
+    }
+    static async findAllArchives() {
+        try {
+            const query = `SELECT * FROM "order_repair" WHERE actif=0;`;
+            const result = await db.query(query);
+            for(let i = 0; i < result.rowCount; i++){
+                const customer = await Customer.findOne(result.rows[i].customer_id);
+                result.rows[i].customer = customer;
+            }
+
+            if(!result.rowCount){
+                return {"message": "Pas de résultat."};
+            }
+            return result.rows;
+
+        }
+        catch(error) {
             console.log(error);
             return false;
         }

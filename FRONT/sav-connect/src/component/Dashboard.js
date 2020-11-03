@@ -1,13 +1,40 @@
-import React from 'react';
-import { Grid, Segment } from 'semantic-ui-react';
+import React, {useState} from 'react';
+import { Grid, Segment, Confirm } from 'semantic-ui-react';
 import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 
 const Dashboard = ({repair}) => {
     const history = useHistory();
 
+    /**Display row when archive */
+    const [ getOpen, setGetOpen ] = useState(false);
+    const [getId, setGetId ] = useState(false);
+    const removeFromList = (e) => {
+        setGetId(e.target.id);
+        setGetOpen(true);
+    };
+    const handleConfirm = () => {
+        axios.get(`repairSheet/archive/${getId}`, {
+            withCredentials: true,
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('token')
+            }
+        })
+        .then((res) => {
+            console.log(res);
+            window.location.reload(false);
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+    };
+    const handleCancel = () => {
+        setGetOpen(false);
+    };
+
     //Map repairs sheet
     const repairsSheet = repair.map((rep) =>
-        <Grid.Row className='grid-details' key={rep.id} >
+        <Grid.Row className='grid-details' key={rep.id}>
             <Grid.Column>
                 <div className='grid-details'>{rep.order_number}</div>
             </Grid.Column>
@@ -31,9 +58,9 @@ const Dashboard = ({repair}) => {
             <Grid.Column>
             <i className="far fa-eye" onClick={()=> history.push(`/RepairSheet/${rep.order_number}`)} ></i>
             <i className="fas fa-pencil-alt" onClick={()=> history.push(`/RepairSheet/edit/${rep.order_number}`)}></i>
-            <i className="far fa-trash-alt"></i>
+            <i className="far fa-trash-alt" onClick={removeFromList} id={rep.id} ></i>
             </Grid.Column>
-        </Grid.Row>
+        </Grid.Row> 
     )
     return (
         <div className='main-page'>
@@ -68,7 +95,14 @@ const Dashboard = ({repair}) => {
                         {repairsSheet}
                     </Grid>
                 </Segment>
-                
+                <Confirm 
+                    open={getOpen}
+                    onCancel={handleCancel}
+                    onConfirm={handleConfirm}
+                    content=' Êtes-vous sûr de vouloir archiver cette fiche ?'
+                    cancelButton='Annuler'
+                    confirmButton='OK'
+                />
             </div>
         </div>
     );

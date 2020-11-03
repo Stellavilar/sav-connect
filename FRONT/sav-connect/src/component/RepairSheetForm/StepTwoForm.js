@@ -13,6 +13,8 @@ const StepTwoForm = () => {
     /**Checkbox state */
     const [checkValue, setCheckValue ] = useState(false);
     const handleChangeCheckbox = (e, { value }) => setCheckValue({value});
+    
+   
 
     /**Form */
     const [ deviceData, setDeviceData ] = useState('');

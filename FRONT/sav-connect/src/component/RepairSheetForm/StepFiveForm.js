@@ -1,10 +1,13 @@
 import React, { useState, useEffect} from 'react';
-import { Header, Confirm } from 'semantic-ui-react';
+import { Header, Confirm, Form, Button } from 'semantic-ui-react';
 import { useParams } from 'react-router';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 
 const StepFiveForm = () => {
+
+    const history = useHistory();
 
     const [ firstTag, setFirstTag ] = useState('');
     const [ secondTag, setSecondTag ] = useState('');
@@ -110,9 +113,53 @@ const StepFiveForm = () => {
         <div className='tag' key={tag.id} style={{backgroundColor: `${tag.color}` }} id={tag.id} onDoubleClick={onDoubleClick} >{tag.title}<div onClick={onClickRemove}  ><i className="far fa-times-circle" id={tag.id}></i></div></div>
     );
 
+    //Get all Actions
+  const [ actions, setActions ] = useState([]);
+  const allActions = () => {
+    axios.get('actions')
+      .then((res) => {
+        setActions(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      return allActions;
+  };
+
+  /**Handle click on cancel button*/
+  const handleClickButton = () => {
+    window.location.reload(false);
+    };
+
+  const getActions = actions.map((action) => <option value={action.id} key={action.id}>{action.name}</option>)
+    
+  /**Add action on repair sheet */
+  const [ selectedValue, setSelectedValue ] = useState('');
+  const handleSubmitAction = (e) => {
+        e.preventDefault();
+        axios.get(`repairSheet/stepTwo/${order_number}`)
+            .then((res) => {
+                axios.get(`action/${selectedValue}/sav/${res.data[0].id}` , {
+                    withCredentials: true,
+                    headers: {
+                        Authorization: 'Bearer ' + localStorage.getItem('token')
+                    }
+                })
+                    .then((res2) => {
+                        history.push('/dashboard');
+                        window.location.reload(false);
+                    })
+                    .catch((err2) => {
+                        console.log(err2);
+                    })
+            })
+  };
+  
+
     useEffect(Tags, []);
     useEffect(clientData, []);
-    
+    useEffect(allActions, []);
+
     return (
         <div className='tab-form'>
             <Header as='h2'>Tags</Header>
@@ -135,6 +182,18 @@ const StepFiveForm = () => {
                     cancelButton='Annuler'
                     confirmButton='OK'
                 />
+            <Header as='h2'>Actions</Header>
+            <Form
+                onSubmit={handleSubmitAction}
+                >
+                <Form.Field>
+                    <select onChange={(e) => setSelectedValue(e.target.value)} ><option>Sélectionnez une action</option>{getActions}</select>
+                </Form.Field>
+                <div className='buttons'>
+                    <Button color='teal'>Valider</Button>
+                    <Button color='red' onClick={handleClickButton}>Annuler</Button>
+                </div>
+            </Form>
         </div>
     );
 };

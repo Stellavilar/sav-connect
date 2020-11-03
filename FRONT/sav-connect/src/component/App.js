@@ -26,6 +26,7 @@ import Worker from './Worker/Worker';
 import WorkerEdit from './Worker/WorkerEdit';
 import Actionlist from './Actionlist';
 import ActionForm from './ActionForm';
+import ArchiveList from './ArchiveList';
 
 const App = () => {
 
@@ -71,9 +72,23 @@ const App = () => {
       return allWorkers;
   };
 
+  //Get all archives Repair sheets
+  const [ archive, setArchive ] = useState([]);
+  const allArchives = () => {
+    axios.get('archivedRepairSheets')
+      .then((res) => {
+        setArchive(res.data);
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+      return allArchives;
+  }
+
   useEffect(repairsSheet, []);
   useEffect(allCustomers, []);
   useEffect(allWorkers, []);
+  useEffect(allArchives, []);
 
 
   return (
@@ -237,6 +252,15 @@ const App = () => {
           <div className='main-page'>
           {isAdmin === 'true' ? <AdminMenu/> : <WorkerMenu/>}
           <ActionForm/> 
+          </div>
+          </>
+        }>
+        </Route>
+        <Route exact path="/archives" render={()=>!token ? <Redirect to='/'/> :  <>
+          <Header />
+          <div className='main-page'>
+          {isAdmin === 'true' ? <AdminMenu/> : <WorkerMenu/>}
+          <ArchiveList archive={archive}/> 
           </div>
           </>
         }>

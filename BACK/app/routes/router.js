@@ -47,6 +47,9 @@ router.get('/repairSheet/stepThree/:order_number', repairSheetController.getStep
 router.patch('/repairSheet/stepFour/:order_number', repairSheetController.formStepFour);
 router.get('/repairSheet/stepFour/:order_number', repairSheetController.getStepFour);
 
+router.get('/repairSheet/archive/:id', repairSheetController.archive);
+router.get('/archivedRepairSheets', repairSheetController.findAllArchives);
+
 /**Tags Routes */
 const tagController = require ('../controllers/tagController');
 router.get('/tag/:id', tagController.findOne);

@@ -23,7 +23,7 @@ const history = useHistory();
                 </Dropdown>
                 <Dropdown item text='Archives'>
                     <Dropdown.Menu>
-                        <Dropdown.Item>Liste des archives</Dropdown.Item>
+                        <Dropdown.Item onClick={()=> history.push('/archives')}>Liste des archives</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
             </Menu>
