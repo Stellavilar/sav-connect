@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Button, Form, Checkbox } from 'semantic-ui-react';
 import { useParams } from 'react-router';
 import Datetime from 'react-datetime';
@@ -18,6 +18,12 @@ const StepFourForm = () => {
 
     /**Date time hooks */
     const [ selectedDate, setSelectedDate ] = useState(null);
+
+    /**Confirm Button state */
+    const [ disable, setDisabled ] = useState(true);
+    const [ errorMessage, setErrorMessage ] = useState(null);
+    const firstRender = useRef(true);
+
 
     /**Handle checkbox */
     const [ isAccepted, setIsAccepted] = useState('');
@@ -44,6 +50,22 @@ const StepFourForm = () => {
             console.log(err);
         })
     };
+
+    useEffect(() => {
+        const formValidation = () => {
+            if(selectedDate === "" ){
+                setErrorMessage('* Vous n\'avez pas complété tous les champs nécessaires');
+                return true
+            }else{
+                setErrorMessage(null);
+            }
+        }
+        if(firstRender.current) {
+            firstRender.current = false;
+            return;
+        }
+        setDisabled(formValidation())
+    }, [ selectedDate]);
    
     return (
         <div className='tab-form'>
@@ -106,8 +128,9 @@ const StepFourForm = () => {
                         onChange={(e) => setRecall(e.target.value)}
                         />
                 </Form.Field>
+                { errorMessage && <p className="error">{errorMessage}</p>}
                 <div className='buttons'>
-                    <Button color='teal'>Valider</Button>
+                    <Button color='teal' disabled={disable} >Valider</Button>
                     <Button color='red' onClick={handleClick}>Annuler</Button>
                 </div>
             </Form>

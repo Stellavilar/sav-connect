@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Button, Form, Checkbox } from 'semantic-ui-react';
 import { useParams } from 'react-router';
 import Datetime from 'react-datetime';
@@ -14,7 +14,10 @@ const StepTwoForm = () => {
     const [checkValue, setCheckValue ] = useState(false);
     const handleChangeCheckbox = (e, { value }) => setCheckValue({value});
     
-   
+   /**Confirm Button state */
+    const [ disable, setDisabled ] = useState(true);
+    const [ errorMessage, setErrorMessage ] = useState(null);
+    const firstRender = useRef(true);
 
     /**Form */
     const [ deviceData, setDeviceData ] = useState('');
@@ -58,7 +61,6 @@ const StepTwoForm = () => {
         })
         .then((res) => {
             console.log(res)
-            
         })
         .catch((err) => {
             console.log(err);
@@ -66,6 +68,21 @@ const StepTwoForm = () => {
     };
 
 useEffect(getPannes, []);
+useEffect(() => {
+    const formValidation = () => {
+        if(selectedDate === "" ){
+            setErrorMessage('* Vous n\'avez pas complété tous les champs nécessaires');
+            return true
+        }else{
+            setErrorMessage(null);
+        }
+    }
+    if(firstRender.current) {
+        firstRender.current = false;
+        return;
+    }
+    setDisabled(formValidation())
+}, [ selectedDate]);
 
     return (
         <div className='tab-form'>
@@ -98,8 +115,10 @@ useEffect(getPannes, []);
                             onChange={date => setSelectedDate(date)}
                             />
                 </Form.Field>
+                { errorMessage && <p className="error">{errorMessage}</p>}
+
                 <div className='buttons'>
-                    <Button color='teal'>Valider</Button>
+                    <Button color='teal' disabled={disable} >Valider</Button>
                     <Button color='red' onClick={handleClick}>Annuler</Button>
                 </div>
             </Form>
