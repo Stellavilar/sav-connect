@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Header, Segment, List } from 'semantic-ui-react';
+import { Header, Segment, List, Dimmer, Loader } from 'semantic-ui-react';
 import { useParams } from 'react-router';
 import { useHistory } from 'react-router-dom';
+import PrintComponents from 'react-print-components';
 import QRCode from 'react-qr-code';
 import axios from 'axios';
 
@@ -16,11 +17,15 @@ const RepairSheet = () => {
     const [ secondTag, setSecondTag ] = useState('');
     const [ thirdTag, setThirdTag ] = useState('');
 
+    /**Loader */
+    const [ loading, setLoading ] = useState(false);
+
     let {id} = useParams();
     const getData = () => {
         axios.get(`repairSheet/stepOne/${id}`)
             .then((res)=> {
                 setCustomerData(res.data[0]);
+                setLoading(true);
             })
             .catch((err) => {
                 console.log(err)
@@ -31,6 +36,7 @@ const RepairSheet = () => {
         axios.get(`repairSheet/stepTwo/${id}`)
             .then((res) => {
                 setDeviceData(res.data[0]);
+                setLoading(true);
             })
             .catch((err) => {
                 console.log(err)
@@ -41,6 +47,7 @@ const RepairSheet = () => {
         axios.get(`repairSheet/stepThree/${id}`)
             .then((res) => {
                 setInterData(res.data[0]);
+                setLoading(true);
             })
             .catch((err) => {
                 console.log(err)
@@ -51,6 +58,7 @@ const RepairSheet = () => {
         axios.get(`repairSheet/stepFour/${id}`)
             .then((res) => {
                 setDevisData(res.data[0]);
+                setLoading(true);
             })
             .catch((err) => {
                 console.log(err)
@@ -66,6 +74,7 @@ const RepairSheet = () => {
                     setFirstTag(res1.data[0]);
                     setSecondTag(res1.data[1]);
                     setThirdTag(res1.data[2]);
+                    setLoading(true);
                 })      
             })
             .catch((err)=> {
@@ -96,9 +105,18 @@ const RepairSheet = () => {
                     <div className='repair-header'>
                         <div></div>
                         <Header as='h2'>Fiche de réparation n° : {customerData.order_number} </Header>
+                        {loading ? [] :  <Dimmer active inverted><Loader inverted /></Dimmer> }
                         <div className='repair-icons'>
                             <i className="fas fa-pencil-alt" onClick={()=> history.push(`/RepairSheet/edit/${id}`)} ></i>
-                            <i className="fas fa-print"></i>
+                            {/* Here is the part whiwh will be printed */}
+                            <PrintComponents
+                                trigger={<i className="fas fa-print"></i>} >
+                                    <Header as='h2'>Fiche de réparation n° : {customerData.order_number} </Header>
+                                    <p className='device'>{customerData.device_name}</p>
+                                    <List.Item><span className='repair-span'>Nom: </span> {customerData.lastname} </List.Item>
+                                    <List.Item><span className='repair-span'>Prénom: </span> {customerData.firstname} </List.Item>
+                                    <List.Item><span className='repair-span'>Téléphone: </span> {customerData.phone} </List.Item>
+                            </PrintComponents>
                         </div>
                     </div>
                     <div className='repair-sheet-device'>

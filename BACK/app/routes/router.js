@@ -80,7 +80,12 @@ router.get('/actions', actionController.findAll);
 router.get('/action/:id', actionController.findOne);
 router.get('/action/:idAction/sav/:idSav', actionController.addActionOnSav);
 
+/**Activity routes */
+const activityController = require ('../controllers/activityController');
 
+router.get('/activity/:nb', activityController.allActivities);
+router.get('/activity/sav/:order_number', activityController.activitiesForOneSav);
+router.get('/activity/user/:userId', activityController.activitiesForOneUser);
 
 
 module.exports = router;

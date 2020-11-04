@@ -27,6 +27,7 @@ import WorkerEdit from './Worker/WorkerEdit';
 import Actionlist from './Actionlist';
 import ActionForm from './ActionForm';
 import ArchiveList from './ArchiveList';
+import Activity from './Activity';
 
 const App = () => {
 
@@ -101,6 +102,7 @@ const App = () => {
           <div className='main-page'> 
           {isAdmin === 'true' ? <AdminMenu/> : <WorkerMenu/>}
           <Dashboard repair={repair} /> 
+          <Activity />
           </div>
         </Route>
         <Route exact path="/RepairSheetForm" render={()=>!token ? <Redirect to='/'/> :  <>
@@ -108,6 +110,7 @@ const App = () => {
         <div className='main-page'>
           {isAdmin === 'true' ? <AdminMenu/> : <WorkerMenu/>}
           <StepFormOne clients={clients}/> 
+          <Activity />
           </div>
           </>
         }>
@@ -116,7 +119,7 @@ const App = () => {
           <Header />
           <div className='main-page'>
           {isAdmin === 'true' ? <AdminMenu/> : <WorkerMenu/>}
-          <RepairSheetForm /> 
+          <RepairSheetForm />
           </div>
           </>
         }>
@@ -134,7 +137,8 @@ const App = () => {
           <Header />
           <div className='main-page'>
           {isAdmin === 'true' ? <AdminMenu/> : <WorkerMenu/>}
-          <TagForm /> 
+          <TagForm />
+          <Activity /> 
           </div>
           </>
         }>
@@ -143,7 +147,8 @@ const App = () => {
           <Header />
           <div className='main-page'>
           {isAdmin === 'true' ? <AdminMenu/> : <WorkerMenu/>}
-          <TagList /> 
+          <TagList />
+          <Activity /> 
           </div>
           </>
         }>
@@ -152,7 +157,8 @@ const App = () => {
           <Header />
           <div className='main-page'>
           {isAdmin === 'true' ? <AdminMenu/> : <WorkerMenu/>}
-          <PanneForm /> 
+          <PanneForm />
+          <Activity /> 
           </div>
           </>
         }>
@@ -161,7 +167,8 @@ const App = () => {
           <Header />
           <div className='main-page'>
           {isAdmin === 'true' ? <AdminMenu/> : <WorkerMenu/>}
-          <PanneList /> 
+          <PanneList />
+          <Activity /> 
           </div>
           </>
         }>
@@ -170,7 +177,8 @@ const App = () => {
           <Header />
           <div className='main-page'>
           {isAdmin === 'true' ? <AdminMenu/> : <WorkerMenu/>}
-          <ClientList  clients={clients}/> 
+          <ClientList  clients={clients}/>
+          <Activity /> 
           </div>
           </>
         }>
@@ -179,7 +187,8 @@ const App = () => {
           <Header />
           <div className='main-page'>
           {isAdmin === 'true' ? <AdminMenu/> : <WorkerMenu/>}
-          <Client/> 
+          <Client/>
+          <Activity /> 
           </div>
           </>
         }>
@@ -188,7 +197,8 @@ const App = () => {
           <Header />
           <div className='main-page'>
           {isAdmin === 'true' ? <AdminMenu/> : <WorkerMenu/>}
-          <ClientForm/> 
+          <ClientForm/>
+          <Activity /> 
           </div>
           </>
         }>
@@ -197,7 +207,8 @@ const App = () => {
           <Header />
           <div className='main-page'>
           {isAdmin === 'true' ? <AdminMenu/> : <WorkerMenu/>}
-          <ClientEdit/> 
+          <ClientEdit/>
+          <Activity /> 
           </div>
           </>
         }>
@@ -206,7 +217,8 @@ const App = () => {
           <Header />
           <div className='main-page'>
           {isAdmin === 'true' ? <AdminMenu/> : <WorkerMenu/>}
-          <WorkerForm/> 
+          <WorkerForm/>
+          <Activity /> 
           </div>
           </>
         }>
@@ -215,7 +227,8 @@ const App = () => {
           <Header />
           <div className='main-page'>
           {isAdmin === 'true' ? <AdminMenu/> : <WorkerMenu/>}
-          <WorkerList workers={workers}/> 
+          <WorkerList workers={workers}/>
+          <Activity /> 
           </div>
           </>
         }>
@@ -233,7 +246,8 @@ const App = () => {
           <Header />
           <div className='main-page'>
           {isAdmin === 'true' ? <AdminMenu/> : <WorkerMenu/>}
-          <WorkerEdit /> 
+          <WorkerEdit />
+          <Activity /> 
           </div>
           </>
         }>
@@ -242,7 +256,8 @@ const App = () => {
           <Header />
           <div className='main-page'>
           {isAdmin === 'true' ? <AdminMenu/> : <WorkerMenu/>}
-          <Actionlist /> 
+          <Actionlist />
+          <Activity /> 
           </div>
           </>
         }>
@@ -251,7 +266,8 @@ const App = () => {
           <Header />
           <div className='main-page'>
           {isAdmin === 'true' ? <AdminMenu/> : <WorkerMenu/>}
-          <ActionForm/> 
+          <ActionForm/>
+          <Activity /> 
           </div>
           </>
         }>
@@ -260,7 +276,8 @@ const App = () => {
           <Header />
           <div className='main-page'>
           {isAdmin === 'true' ? <AdminMenu/> : <WorkerMenu/>}
-          <ArchiveList archive={archive}/> 
+          <ArchiveList archive={archive}/>
+          <Activity /> 
           </div>
           </>
         }>

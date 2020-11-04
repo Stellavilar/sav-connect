@@ -23,6 +23,7 @@ const Dashboard = ({repair}) => {
         .then((res) => {
             console.log(res);
             window.location.reload(false);
+
         })
         .catch((err) => {
             console.log(err);
@@ -80,7 +81,7 @@ const Dashboard = ({repair}) => {
                             <Segment>Modèle</Segment>
                         </Grid.Column>
                         <Grid.Column>
-                            <Segment>Entrée en SAV</Segment>
+                            <Segment>Entrée SAV</Segment>
                         </Grid.Column>
                         <Grid.Column>
                             <Segment>Tags</Segment>

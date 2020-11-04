@@ -92,10 +92,11 @@ body {
   }
   .row.grid-details {
     display: flex;
-    width: 70vw;
+    width: 100%;
     text-align: center;
     justify-content: space-around;
     font-weight: bold;
+    border-bottom: #2c3e50 solid 0.1px;
       &:hover {
         background-color: #d1cfcf;
       }
@@ -385,16 +386,16 @@ body {
 .tag-list {
   // min-height: 100vh;
   padding: 25px;
-  width: 100vw;
-
+  width: 150vw;
   .tags {
     display: flex;
+    width: 100%;
     flex-wrap: wrap;
   }
   .tag {
     padding: 6px;
     border-radius: 9px;
-    width: 10%;
+    width: 20%;
     text-align: center;
     font-weight: bold;
     margin: 5px;
@@ -411,9 +412,9 @@ body {
 .panne-form {
   min-height: 100vh;
   padding: 25px;
-  
+  width: 80%;
   .ui.form {
-    width: 100vw;
+    width: 100%;
     display: flex;
     flex-direction: column;
 
@@ -572,9 +573,8 @@ body {
 .archive-list {
   min-height: 100vh;
   padding: 25px;
-  width: 70vw;
   .ui.grid > .row{
-    width: 70vw;
+    width: 100%;
   }
   .ui.grid > .row > .column {
     padding: 0px;
@@ -598,7 +598,20 @@ body {
       }
   }
 }
+.activity {
+  width: 60vw;
+  min-height: 100vh;
+  padding: 25px;
 
+    .ui.segment {
+      height: 100%;
+      font-size: 1.2em;
+    }
+    .ui.list .list>.item, .ui.list>.item, ol.ui.list li, ul.ui.list li {
+      margin-bottom: 10px;
+    }
+
+}
 // Mobile version
 @media only screen and (max-width: 768px ) {
   .login {
