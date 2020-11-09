@@ -87,5 +87,13 @@ router.get('/activity/:nb', activityController.allActivities);
 router.get('/activity/sav/:order_number', activityController.activitiesForOneSav);
 router.get('/activity/user/:userId', activityController.activitiesForOneUser);
 
+/**Search routes */
+const searchController = require ('../controllers/searchController');
+
+router.get('/search/user/lastname', searchController.userLastname);
+router.get('/search/user/mail', searchController.userMail);
+router.get('/search/user/phone', searchController.userPhone);
+router.get('/search/user', searchController.user);
+router.get('/search', searchController.search);
 
 module.exports = router;

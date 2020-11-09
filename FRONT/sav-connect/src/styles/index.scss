@@ -70,11 +70,16 @@ body {
     .profil-buttons {
       display: flex;
       align-items: center;
+       .ui.button{
+          margin-right: 20px;
+       }
     }
     .ui.icon.input {
       width: 250px;
     }
-
+    .burger-button {
+      display: none;
+    }
     
 }
 .main-page {
@@ -82,8 +87,15 @@ body {
 }
 .dashboard {
   min-height: 100vh;
-  padding: 25px;
+  padding: 15px;
+  width: 100%;
  
+  .ui.segment.grid-details {
+    width: 100%;
+  }
+  .ui.grid {
+    width: 100%;
+  }
   .ui.grid > .row{
     width: 70vw;
   }
@@ -96,6 +108,7 @@ body {
     text-align: center;
     justify-content: space-around;
     font-weight: bold;
+    font-size: 0.9em;
     border-bottom: #2c3e50 solid 0.1px;
       &:hover {
         background-color: #d1cfcf;
@@ -108,6 +121,7 @@ body {
           color: sienna;
         }
       }
+
   }
   .dashboard-tag {
     padding: 6px;
@@ -121,13 +135,12 @@ body {
   .ui.segment {
     color: $grey;
     background-color: $blue;
-    font-size: 1.2em;
+    font-size: 1em;
     text-align: center;
   }
   .ui.segment.grid-details {
     background-color: $grey;
     color: $blue;
-    
   }
 }
 .dashboard-menu {
@@ -389,7 +402,7 @@ body {
   width: 150vw;
   .tags {
     display: flex;
-    width: 100%;
+    width: 50%;
     flex-wrap: wrap;
   }
   .tag {
@@ -612,8 +625,26 @@ body {
     }
 
 }
+.results {
+  position: absolute;
+  z-index: 1;
+  background-color: $white;
+  left: 37%;
+  border-radius: 10px;
+  border: $blue solid 0.1px;
+
+    .result-content {
+      font-size: 1.3em;
+      padding: 8px;
+      border-bottom: $blue solid 0.1px;
+      &:hover {
+        background-color: #d1cfcf;
+      }
+
+    }
+}
 // Mobile version
-@media only screen and (max-width: 768px ) {
+@media only screen and (max-width: 1024px ) {
   .login {
     img {
       width: 50vw;
@@ -628,4 +659,119 @@ body {
       }
     }
   }
+  .dashboard-menu {display: none}
+  .activity { display: none }
+  .navbar {
+
+    width: 100vw;
+
+    img {
+      width: 20%
+    }
+    .ui.search {
+      width: 50%;
+      .ui.icon.input {
+        width: 100%;
+      }
+    }
+    .profil-buttons {
+      display: none;
+    }
+    .burger-button {
+      display: block;
+      i {
+        font-size: 2.5em;
+        margin-top: .5em;
+        color: $blue;
+      }
+  
+      .menu.transition.visible {
+        position: fixed;
+        top: 5em;
+        left: 0;
+        width: 100vw;
+        min-height: calc(100vh-5em);
+        border-radius: 0;
+  
+        .item {
+          text-align: center;
+          color: $blue;
+          font-weight: bold;
+          border-bottom: 1px solid;
+          padding: 1.3em 0 !important;
+        }
+      }
+    }
+  }
+  .dashboard {
+    .ui.equal.width.grid {
+      display: none;
+    }
+    .row.grid-details {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+        .column {
+          width: 100vw;
+
+          .grid-details {
+            width: 100vw;
+          }
+
+          .dashboard-tag {
+            width: 200px;
+            margin-left: 150%;
+            margin-top: 10px;
+          }
+        }
+        .column.options {
+          display: flex;
+          align-self: center;
+          margin-top: 15px;
+        }
+        
+    }
+  }
+  .repair-sheet {
+    width: 100vw;
+
+    .ui.header {
+      text-align: start;
+    }
+
+    .repair-sheet-options {
+      
+      svg {
+        display: none;
+      }
+      .tag-area {
+        display: flex;
+        flex-direction: column;
+        margin-left: 20%;
+      }
+      
+    }
+    
+  }
+  .tab {
+    width: 100vw;
+    .tab-form {
+      .tag-list .tag{
+        width: 70%;
+        }
+
+      .tag-area {
+        .tags-on-form{
+          width: 50%;
+        }
+      }
+    }
+
+
+  }
+  .tag-list .tag {
+    width: 100%;
+  }
+
 }
+

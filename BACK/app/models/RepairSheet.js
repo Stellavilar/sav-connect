@@ -384,6 +384,22 @@ module.exports = class RepairSheets {
             return false;
         }
     }
+
+    static async search(search) {
+        try {
+            const query = 'SELECT "order_repair".id ,order_number, device_name, device_brand, date_enter, actif, urgent, "customer".lastname, "customer".firstname FROM "order_repair" JOIN "customer" ON "customer".id="order_repair".customer_id WHERE lower(order_number) LIKE $1 OR lower(device_name) LIKE $1 LIMIT 10;';
+            const values = ['%'+search+'%'];
+            const result = await db.query(query, values);
+            if(result.rowCount == 0){
+                return [];
+            }else{
+                return result.rows;
+            }
+        } catch (error) {
+            console.log(error);
+            return error;
+        }
+    }
     
 
 
