@@ -178,7 +178,7 @@ CREATE SEQUENCE "order_number";
 ALTER TABLE "order_repair" ALTER "order_number" SET DEFAULT CONCAT('SAV', '', lpad(to_hex(nextval('order_number'::regclass)),10,'0'));
 
 
-INSERT INTO "action" ("name","is-blocked") VALUES
+INSERT INTO "action" ("name","is_blocked") VALUES
 ('a appellé le client', 1),
 ('a créé la fiche', 1),
 ('a archivé la fiche', 1),
