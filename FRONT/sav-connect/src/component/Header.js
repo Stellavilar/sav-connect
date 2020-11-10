@@ -7,6 +7,7 @@ import axios from 'axios';
 import BurgerButtonAdmin from './BurgerButtonAdmin'
 
 const Header = () => {
+
     const history = useHistory();
 
     /**Search */
@@ -20,7 +21,7 @@ const Header = () => {
         axios
             .get(SEARCH_URL)
             .then((res) => {
-                setResults(res.data)            
+                setResults(res.data)          
             })
             .catch((err) => {
                 console.log(err);
@@ -62,7 +63,8 @@ const Header = () => {
     }
     
     const showResult = result.map((results) => <div className='result-content' key={results.id} onClick={handleClick} id={results.order_number} >{results.order_number} {results.lastname} {results.firstname} {results.device_name} </div>)
-    // useEffect(getResults,[])
+
+
 
     return (
         <>

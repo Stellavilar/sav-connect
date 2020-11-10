@@ -147,7 +147,7 @@ CREATE TABLE "order_repair_config_panne" (
     "config_panne_id" int NOT NULL REFERENCES "config_panne"("id"),
     "user_id" int NOT NULL REFERENCES "user"("id"),
     created_at timestamp with time zone DEFAULT now() NOT NULL,
-    updated_at timestamp with time zone,
+    updated_at timestamp with time zone
 );
 
 INSERT INTO "role" ("name") VALUES 
