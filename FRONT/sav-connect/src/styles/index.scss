@@ -1,0 +1,777 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400&display=swap');
+
+$white: #FFFFFF;
+$blue: #2c3e50;
+$grey: #ecf0f1;
+$orange: #E5A430;
+$green: #6BBC76;
+$bg: url('../img/Fond jaune.png');
+
+body {
+  width: 100vw;
+  min-height: 100vh;
+  font-family: 'Montserrat', sans-serif; 
+  margin: 0px;
+};
+
+// Desktop Version
+.login {
+  width: 100vw;
+  min-height: 100vh;
+  background-image: $bg;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+    img {
+      width: 30vw;
+    }
+
+    .ui.header {
+      margin: 0px;
+      text-align: center;
+      font-size: 2.5em;
+      color: $blue;
+    }
+    .ui.form {
+      width: 100vw;
+      text-align: center;
+      padding: 15vh 20px;
+
+      label {
+        font-size: 1.2em;
+        font-weight: bold;
+        color: $blue;
+      }
+      .field {
+        width: 20%;
+        margin: auto;
+      }
+      .buttons {
+        margin: 25px;
+      }
+    }
+}
+.navbar {
+  background-color: $orange;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+    img {
+      width: 5%;
+    }
+    .fa, .fas {
+      font-size: 3em;
+      color: $blue;
+      padding: 9px;
+    }
+    .profil-buttons {
+      display: flex;
+      align-items: center;
+       .ui.button{
+          margin-right: 20px;
+       }
+    }
+    .ui.icon.input {
+      width: 250px;
+    }
+    .burger-button {
+      display: none;
+    }
+    
+}
+.main-page {
+  display: flex;
+}
+.dashboard {
+  min-height: 100vh;
+  padding: 15px;
+  width: 100%;
+ 
+  .ui.segment.grid-details {
+    width: 100%;
+  }
+  .ui.grid {
+    width: 100%;
+  }
+  .ui.grid > .row{
+    width: 70vw;
+  }
+  .ui.grid > .row > .column {
+    padding: 0px;
+  }
+  .row.grid-details {
+    display: flex;
+    width: 100%;
+    text-align: center;
+    justify-content: space-around;
+    font-weight: bold;
+    font-size: 0.9em;
+    border-bottom: #2c3e50 solid 0.1px;
+      &:hover {
+        background-color: #d1cfcf;
+      }
+      i {
+        margin-right: 11px;
+        font-size: 1.2em;
+        &:hover {
+          font-size: 1.5em;
+          color: sienna;
+        }
+      }
+
+  }
+  .dashboard-tag {
+    padding: 6px;
+    border-radius: 9px;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    border: solid 0.1px gray;
+  
+  }
+  .ui.segment {
+    color: $grey;
+    background-color: $blue;
+    font-size: 1em;
+    text-align: center;
+  }
+  .ui.segment.grid-details {
+    background-color: $grey;
+    color: $blue;
+  }
+}
+.dashboard-menu {
+  background-color: $blue;
+  width: 15%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+
+  .ui.dropdown>.text {
+    font-size: 1.6em;
+    font-family: 'Montserrat', sans-serif; 
+  }
+  .ui.vertical.menu .item > i.icon {
+    display: none;
+  }
+  .ui.vertical.menu .item {
+    background-color: $blue;
+    color: white;
+  }
+  .ui.vertical.menu{
+    & :hover {
+      background-color: white;
+      color: $blue;
+    }
+    border: none;
+  }
+  .ui.menu .ui.dropdown .menu > .item {
+    color: $blue !important;
+    font-size: 1.3em !important;
+  }
+}
+.repair-sheet-form {
+  min-height: 100vh;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+
+  .ui.header {
+    color: $blue;
+  }
+
+  .ui.selection.dropdown {
+    width: 50%;
+  }
+  .row-options {
+    display: flex;
+    justify-content: space-around;
+    &:hover {
+      background-color: $grey;
+    }
+    div {
+      font-size: 1.2em !important;
+      margin-bottom: 20px ;
+      padding: 5px;
+    }
+  }
+
+  .ui.form {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+  
+      label {
+        font-size: 1.2em;
+        font-weight: bold;
+        color: $blue;
+      }
+      .field {
+        width: 50%;
+        // margin: auto;
+      }
+      .buttons {
+        margin: 25px;
+        align-items: center;
+      }
+      select {
+        width: 50%;
+      }
+  }
+}
+.repair-sheet-infos {
+  padding: 30px;
+
+  .ui.header {
+    margin-bottom: 40px;
+    color: $blue;
+    text-decoration: underline;
+  }
+  .ui.list .list>.item, .ui.list>.item, ol.ui.list li, ul.ui.list li {
+    margin-bottom: 10px;
+    color: $blue;
+  }
+}
+.tab {
+  min-height: 100vh;
+  padding: 25px;
+  width: 70vw;
+}
+.ui.tabular.menu .item {
+  font-size: 1.5em;
+}
+.tab-form {
+  
+  .ui.form {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+      label {
+        font-size: 1.2em;
+        font-weight: bold;
+        color: $blue;
+      }
+      .field {
+        width: 70%;
+      }
+      .buttons {
+        margin: 25px;
+        align-items: center;
+      }
+  }
+  .ui.header.tags-repair {
+    border-top: $grey solid 0.1px;
+    padding-top: 15px;
+  }
+  .tag-area {
+    display: flex;
+    flex-direction: column;
+      .tags-on-form {
+        padding: 6px;
+        border-radius: 9px;
+        width: 15%;
+        text-align: center;
+        font-weight: bold;
+        border: solid 0.1px gray;
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: space-between;
+
+        i {
+          margin-right: 11px;
+          font-size: 1.2em;
+          &:hover {
+            font-size: 1.5em;
+          }
+        }
+      }
+  }
+  
+}
+.repair-sheet {
+  min-height: 100vh;
+  padding: 25px;
+  width: 70vw;
+
+  .ui.list .list>.item, .ui.list>.item, ol.ui.list li, ul.ui.list li {
+    margin-bottom: 10px;
+  }
+
+  .ui.header {
+    text-align: center;
+  }
+  .repair-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+
+      .repair-icons {
+        display: flex;
+        justify-content: space-between;
+         i {
+           font-size: 1.3em;
+           margin-right: 15px;
+           color: $blue;
+         }
+      }
+  }
+  .repair-sheet-device {
+    display: flex;
+    justify-content: center;
+
+    .device {
+      font-size: 1.3em;
+      font-weight: bold;
+      margin: 5px;
+    }
+  }
+  .repair-sheet-options {
+    display: flex;
+    justify-content: space-between;
+  }
+  .repair-sheet-one {
+    border-bottom: $blue solid 0.1px;
+    padding: 10px;
+    font-size: 1.2em;
+  }
+  .repair-sheet-client {
+    border-bottom: $blue solid 0.1px;
+    padding: 10px;
+    font-size: 1.2em;
+
+      .repair-span {
+        font-weight: bold;
+      }
+  }
+  .repair-sheet-repair {
+    border-bottom: $blue solid 0.1px;
+    padding: 10px;
+    font-size: 1.2em;
+
+  }
+  .repair-devis {
+    padding: 10px;
+    font-size: 1.2em;
+
+    .amount.description {
+      display: flex;
+      align-items: center;
+    }
+  }
+  .repar-sheet-tag {
+    padding: 11px;
+    margin-bottom: 5px;
+    border-radius: 9px;
+    font-weight: bold;
+  }
+}
+.tag-form {
+
+  min-height: 100vh;
+  padding: 25px;
+  
+  .ui.form {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+
+      label {
+        font-size: 1.2em;
+        font-weight: bold;
+        color: $blue;
+      }
+      .field {
+        width: 70%;
+      }
+      .buttons {
+        margin: 25px;
+        align-items: center;
+      }
+  }
+  
+}
+
+.tag-list {
+  // min-height: 100vh;
+  padding: 25px;
+  width: 150vw;
+  .tags {
+    display: flex;
+    width: 50%;
+    flex-wrap: wrap;
+  }
+  .tag {
+    padding: 6px;
+    border-radius: 9px;
+    width: 50%;
+    text-align: center;
+    font-weight: bold;
+    margin: 5px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .fa, .far, .fas {
+    &:hover {
+      font-size: 1.5em;
+    }
+  }
+}
+.panne-form {
+  min-height: 100vh;
+  padding: 25px;
+  width: 80%;
+  .ui.form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+      label {
+        font-size: 1.2em;
+        font-weight: bold;
+        color: $blue;
+      }
+      .field {
+        width: 70%;
+      }
+      .buttons {
+        margin: 25px;
+        align-items: center;
+      }
+  }
+}
+.panne-list {
+  min-height: 100vh;
+  padding: 25px;
+  width: 100vw;
+
+    .ui.segment.panne-segment {
+      display: flex;
+      justify-content: space-between;
+    }
+    i {
+      margin-right: 11px;
+      font-size: 1.2em;
+      &:hover {
+        font-size: 1.5em;
+        color: sienna;
+      }
+    }
+    
+}
+.client-list {
+  .ui.header {
+    text-align: center;
+    margin-top: 10px;
+  }
+}
+.client {
+  min-height: 100vh;
+  padding: 25px;
+  width: 100vw;
+  font-size: 1.5em;
+
+    .ui.header {
+      text-align: center;
+    }
+
+    span {
+      font-weight: bold;
+    }
+
+    .ui.list {
+      font-size: 1.3em;
+    }
+    .client-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      i {
+        margin-right: 11px;
+        font-size: 1.2em;
+        &:hover {
+          font-size: 1.5em;
+          color: sienna;
+        }
+      }
+    }
+}
+.client-form {
+  min-height: 100vh;
+  padding: 25px;
+  
+  .ui.form {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+
+      label {
+        font-size: 1.2em;
+        font-weight: bold;
+        color: $blue;
+      }
+      .field {
+        width: 70%;
+      }
+      .buttons {
+        margin: 25px;
+        align-items: center;
+      }
+  }
+  .ui.header {
+    margin-bottom: 35px;
+  }
+}
+.client-edit {
+  min-height: 100vh;
+  padding: 25px;
+  
+  .ui.form {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+
+      label {
+        font-size: 1.2em;
+        font-weight: bold;
+        color: $blue;
+      }
+      .field {
+        width: 70%;
+      }
+      .buttons {
+        margin: 25px;
+        align-items: center;
+      }
+  }
+  .ui.header {
+    margin-bottom: 35px;
+  }
+}
+.worker-form {
+  min-height: 100vh;
+  padding: 25px;
+  
+  .ui.form {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+
+      label {
+        font-size: 1.2em;
+        font-weight: bold;
+        color: $blue;
+      }
+      .field {
+        width: 70%;
+      }
+      .buttons {
+        margin: 25px;
+        align-items: center;
+      }
+      .ui.checkbox {
+        margin-right: 40px;
+      }
+  }
+  .ui.header {
+    margin-bottom: 35px;
+  }
+}
+.archive-list {
+  min-height: 100vh;
+  padding: 25px;
+  .ui.grid > .row{
+    width: 100%;
+  }
+  .ui.grid > .row > .column {
+    padding: 0px;
+  }
+  .row.grid-details {
+    display: flex;
+    width: 70vw;
+    text-align: center;
+    justify-content: space-around;
+    font-weight: bold;
+      &:hover {
+        background-color: #d1cfcf;
+      }
+      i {
+        margin-right: 11px;
+        font-size: 1.2em;
+        &:hover {
+          font-size: 1.5em;
+          color: sienna;
+        }
+      }
+  }
+}
+.activity {
+  width: 50vw;
+  min-height: 100vh;
+  padding: 25px;
+
+    .ui.segment {
+      height: 100%;
+      font-size: 1em;
+    }
+    .ui.list .list>.item, .ui.list>.item, ol.ui.list li, ul.ui.list li {
+      margin-bottom: 10px;
+    }
+
+}
+.results {
+  position: absolute;
+  z-index: 1;
+  background-color: $white;
+  left: 37%;
+  border-radius: 10px;
+  border: $blue solid 0.1px;
+
+    .result-content {
+      font-size: 1.3em;
+      padding: 8px;
+      border-bottom: $blue solid 0.1px;
+      &:hover {
+        background-color: #d1cfcf;
+      }
+
+    }
+}
+// Mobile version
+@media only screen and (max-width: 1024px ) {
+  .login {
+    img {
+      width: 50vw;
+      margin-bottom: 20px;
+    }
+    .ui.header {
+      font-size: 2em;
+    }
+    .ui.form {
+      .field {
+        width: 60%;
+      }
+    }
+  }
+  .dashboard-menu {display: none}
+  .activity { display: none }
+  .navbar {
+
+    width: 100vw;
+
+    img {
+      width: 20%
+    }
+    .ui.search {
+      width: 50%;
+      .ui.icon.input {
+        width: 100%;
+      }
+    }
+    .profil-buttons {
+      display: none;
+    }
+    .burger-button {
+      display: block;
+      i {
+        font-size: 2.5em;
+        margin-top: .5em;
+        color: $blue;
+      }
+  
+      .menu.transition.visible {
+        position: fixed;
+        top: 5em;
+        left: 0;
+        width: 100vw;
+        min-height: calc(100vh-5em);
+        border-radius: 0;
+  
+        .item {
+          text-align: center;
+          color: $blue;
+          font-weight: bold;
+          border-bottom: 1px solid;
+          padding: 1.3em 0 !important;
+        }
+      }
+    }
+  }
+  .dashboard {
+    .ui.equal.width.grid {
+      display: none;
+    }
+    .row.grid-details {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+        .column {
+          width: 100vw;
+
+          .grid-details {
+            width: 100vw;
+          }
+
+          .dashboard-tag {
+            width: 200px;
+            margin-left: 150%;
+            margin-top: 10px;
+          }
+        }
+        .column.options {
+          display: flex;
+          align-self: center;
+          margin-top: 15px;
+        }
+        
+    }
+  }
+  .repair-sheet {
+    width: 100vw;
+
+    .ui.header {
+      text-align: start;
+    }
+
+    .repair-sheet-options {
+      
+      svg {
+        display: none;
+      }
+      .tag-area {
+        display: flex;
+        flex-direction: column;
+        margin-left: 20%;
+      }
+      
+    }
+    
+  }
+  .tab {
+    width: 100vw;
+    .tab-form {
+      .tag-list .tag{
+        width: 70%;
+        }
+
+      .tag-area {
+        .tags-on-form{
+          width: 50%;
+        }
+      }
+    }
+
+
+  }
+  .tag-list .tag {
+    width: 100%;
+  }
+
+}
+
