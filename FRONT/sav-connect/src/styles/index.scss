@@ -612,13 +612,13 @@ body {
   }
 }
 .activity {
-  width: 60vw;
+  width: 50vw;
   min-height: 100vh;
   padding: 25px;
 
     .ui.segment {
       height: 100%;
-      font-size: 1.2em;
+      font-size: 1em;
     }
     .ui.list .list>.item, .ui.list>.item, ol.ui.list li, ul.ui.list li {
       margin-bottom: 10px;
