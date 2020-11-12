@@ -71,16 +71,10 @@ module.exports = class RepairSheets {
                 result.rows[0].config_pannes = configPannes;
             }
 
-            if(result.rowCount < 1){
-                return {"message": "Pas de résultat."};
-            }
             return result.rows;
         } catch (error) {
             console.log(error);
-            const errMessage = {
-                "error" : error.detail
-            }
-            return errMessage;
+            res.send(error);
         }
     }
 
@@ -373,15 +367,10 @@ module.exports = class RepairSheets {
                 result.rows[i].customer = customer;
             }
 
-            if(!result.rowCount){
-                return {"message": "Pas de résultat."};
-            }
             return result.rows;
-
-        }
-        catch(error) {
+        } catch (error) {
             console.log(error);
-            return false;
+            res.send(error);
         }
     }
 

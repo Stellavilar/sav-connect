@@ -37,13 +37,10 @@ module.exports = class ConfigPanne {
         try {
             const query = 'SELECT * FROM "config_panne" WHERE actif=0;';
             const result = await db.query(query);
-            if(result.rowCount < 1){
-                return {"message": "Pas de résultat."};
-            }
             return result.rows;
         } catch (error) {
             console.log(error);
-            return false;
+            res.send(error);
         }
     }
     static async findOne(id) {
@@ -52,14 +49,10 @@ module.exports = class ConfigPanne {
             const query = 'SELECT * FROM "config_panne" WHERE id=$1;';
             const values = [id];
             const result = await db.query(query, values);
-            if(result.rowCount == 1) {
-                return result.rows[0];
-            }else{
-                return {"message": "Pas de résultat."};
-            }
+            return result.rows;
         } catch (error) {
             console.log(error);
-            return res.send(error);
+            res.send(error);
         }
     }
     static async edit(id, title) {

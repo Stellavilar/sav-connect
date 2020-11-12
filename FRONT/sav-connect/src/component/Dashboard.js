@@ -62,7 +62,7 @@ const Dashboard = ({repair}) => {
             <i className="far fa-trash-alt" onClick={removeFromList} id={rep.id} ></i>
             </Grid.Column>
         </Grid.Row> 
-    )
+    );
     return (
         <div className='main-page'>
             <div className='dashboard'>
