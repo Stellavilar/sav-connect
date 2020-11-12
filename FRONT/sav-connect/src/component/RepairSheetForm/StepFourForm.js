@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { Button, Form, Checkbox } from 'semantic-ui-react';
+import { Button, Form, Checkbox, Confirm } from 'semantic-ui-react';
 import { useParams } from 'react-router';
 import Datetime from 'react-datetime';
 import axios from 'axios';
@@ -10,6 +10,12 @@ import '../../styles/dateTime.scss';
 
 const StepFourForm = () => {
     let {order_number} = useParams();
+
+    /**Modal State */
+    const [open, setOpen] = useState(false)
+    const handleConfirm = () => {
+        setOpen(false);
+    };
 
     /**Form hooks */
     const [ diag, setDiag ] = useState('');
@@ -43,12 +49,14 @@ const StepFourForm = () => {
             }
         })
         .then((res) => {
-            console.log(res)
-            
+            console.log(res);
+            setOpen(true);            
         })
         .catch((err) => {
             console.log(err);
         })
+        e.target.reset();
+
     };
 
     useEffect(() => {
@@ -134,6 +142,14 @@ const StepFourForm = () => {
                     <Button color='red' onClick={handleClick}>Annuler</Button>
                 </div>
             </Form>
+            <Confirm 
+                    open={open}
+                    onCancel={handleConfirm}
+                    onConfirm={handleConfirm}
+                    content=' Informations enregistrées '
+                    cancelButton='Fermer'
+                    confirmButton='OK'
+                />
         </div>
     )
 };

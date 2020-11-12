@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { Button, Form, Checkbox } from 'semantic-ui-react';
+import { Button, Form, Checkbox, Confirm } from 'semantic-ui-react';
 import { useParams } from 'react-router';
 import Datetime from 'react-datetime';
 import axios from 'axios';
@@ -9,6 +9,12 @@ import '../../styles/dateTime.scss';
 
 const StepTwoForm = () => {
     let {order_number} = useParams();
+
+    /**Modal State */
+    const [open, setOpen] = useState(false)
+    const handleConfirm = () => {
+        setOpen(false);
+    };
 
     /**Checkbox state */
     const [checkValue, setCheckValue ] = useState(false);
@@ -61,10 +67,13 @@ const StepTwoForm = () => {
         })
         .then((res) => {
             console.log(res)
+            setOpen(true);
+
         })
         .catch((err) => {
             console.log(err);
         })
+        e.target.reset();
     };
 
 useEffect(getPannes, []);
@@ -122,6 +131,14 @@ useEffect(() => {
                     <Button color='red' onClick={handleClick}>Annuler</Button>
                 </div>
             </Form>
+            <Confirm 
+                    open={open}
+                    onCancel={handleConfirm}
+                    onConfirm={handleConfirm}
+                    content=' Informations enregistrées '
+                    cancelButton='Fermer'
+                    confirmButton='OK'
+                />
         </div>
     );
 };

@@ -26,7 +26,6 @@ const Login = () => {
             }
         })
         .then((res) => {
-            console.log(res.data.isAdmin)
             if(res.data.token){
                 if(res.data.isAdmin === true){
                     history.push('/dashboard');

@@ -4,11 +4,15 @@ import { Button } from 'semantic-ui-react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
-import BurgerButtonAdmin from './BurgerButtonAdmin'
+import BurgerButtonAdmin from './BurgerButtonAdmin';
+import BurgerButtonWorker from './BurgerButtonWorker';
 
 const Header = () => {
 
     const history = useHistory();
+
+    /**BurgerButton choice if is admin or not */
+    const isAdmin =localStorage.getItem('isAdmin');
 
     /**Search */
     const [ searchText, setSearchText ] = useState('');
@@ -85,7 +89,8 @@ const Header = () => {
                     <Button color='linkedin' onClick={disconnect} >Déconnexion</Button>
                     {/* <i className="fas fa-user-circle"></i> */}
                 </div>
-                <BurgerButtonAdmin/>
+                {isAdmin === 'true' ? <BurgerButtonAdmin/> : <BurgerButtonWorker/>}
+                
             </div>
                 { open ? <div className="results">{showResult}</div> : null}
             </>

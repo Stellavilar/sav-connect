@@ -88,7 +88,7 @@ body {
 .dashboard {
   min-height: 100vh;
   padding: 15px;
-  width: 100%;
+  width: 65vw;
  
   .ui.segment.grid-details {
     width: 100%;
@@ -612,13 +612,14 @@ body {
   }
 }
 .activity {
-  width: 50vw;
+  width: 100%;
   min-height: 100vh;
   padding: 25px;
 
     .ui.segment {
       height: 100%;
       font-size: 1em;
+      width: 100%;
     }
     .ui.list .list>.item, .ui.list>.item, ol.ui.list li, ul.ui.list li {
       margin-bottom: 10px;
@@ -659,8 +660,11 @@ body {
       }
     }
   }
+
   .dashboard-menu {display: none}
+
   .activity { display: none }
+
   .navbar {
 
     width: 100vw;
@@ -700,17 +704,27 @@ body {
           border-bottom: 1px solid;
           padding: 1.3em 0 !important;
         }
+        .item.deconnect {
+          background-color: $orange !important;
+        }
       }
     }
   }
   .dashboard {
+
+    width: 100vw;
+
+    .ui.header {
+      width: 100vw;
+    }
+
     .ui.equal.width.grid {
       display: none;
     }
     .row.grid-details {
       display: flex;
       flex-direction: column;
-      width: 100%;
+
         .column {
           width: 100vw;
 
@@ -719,14 +733,15 @@ body {
           }
 
           .dashboard-tag {
-            width: 200px;
-            margin-left: 150%;
+            width: 150px;
             margin-top: 10px;
+            align-self: center;
+
           }
         }
         .column.options {
           display: flex;
-          align-self: center;
+          align-self: start;
           margin-top: 15px;
         }
         

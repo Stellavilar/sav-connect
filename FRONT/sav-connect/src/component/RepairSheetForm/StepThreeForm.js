@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { Button, Form } from 'semantic-ui-react';
+import { Button, Form, Confirm } from 'semantic-ui-react';
 import { useParams } from 'react-router';
 import Datetime from 'react-datetime';
 import axios from 'axios';
@@ -9,6 +9,12 @@ import '../../styles/dateTime.scss';
 
 const StepThreeForm = () => {
     let {order_number} = useParams();
+
+    /**Modal State */
+    const [open, setOpen] = useState(false)
+    const handleConfirm = () => {
+        setOpen(false);
+    };
 
     const [ getInter, setGetInter ] = useState ('');
 
@@ -34,12 +40,14 @@ const StepThreeForm = () => {
             }
         })
         .then((res) => {
-            console.log(res)
-            console.log('validé')
+            console.log(res);
+            setOpen(true);
         })
         .catch((err) => {
             console.log(err);
         })
+        e.target.reset();
+
     };
 
     useEffect(() => {
@@ -72,7 +80,7 @@ const StepThreeForm = () => {
                         />
                 </Form.Field>
                 <Form.Field>
-                    <label>Date d'ntervention</label>
+                    <label>Date d'intervention</label>
                     <Datetime
                             locale="fr"
                             utc={true}
@@ -88,6 +96,14 @@ const StepThreeForm = () => {
                     <Button color='red' onClick={handleClick}>Annuler</Button>
                 </div>
             </Form>
+            <Confirm 
+                    open={open}
+                    onCancel={handleConfirm}
+                    onConfirm={handleConfirm}
+                    content=' Informations enregistrées '
+                    cancelButton='Fermer'
+                    confirmButton='OK'
+                />
         </div>
     )
 };
