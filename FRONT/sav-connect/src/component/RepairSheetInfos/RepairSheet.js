@@ -116,6 +116,10 @@ const RepairSheet = () => {
                                     <List.Item><span className='repair-span'>Nom: </span> {customerData.lastname} </List.Item>
                                     <List.Item><span className='repair-span'>Prénom: </span> {customerData.firstname} </List.Item>
                                     <List.Item><span className='repair-span'>Téléphone: </span> {customerData.phone} </List.Item>
+                                    <QRCode
+                                        size={qrSize}
+                                        value={urlQrcode}
+                                    />
                             </PrintComponents>
                         </div>
                     </div>
