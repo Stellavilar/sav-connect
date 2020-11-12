@@ -51,7 +51,7 @@ const Dashboard = ({repair}) => {
             <Grid.Column>
                 <div className='grid-details'>{new Intl.DateTimeFormat('fr-FR').format(new Date(rep.date_enter))}</div>
             </Grid.Column>
-            <Grid.Column>
+            <Grid.Column className='tags'>
                 {rep.tags[0] ? <div className='dashboard-tag' key={rep.tags[0].id} style={{backgroundColor: `${rep.tags[0].color}` }}>{rep.tags[0].title}</div> : null}
                 {rep.tags[1] ? <div className='dashboard-tag' key={rep.tags[1].id} style={{backgroundColor: `${rep.tags[1].color}` }}>{rep.tags[1].title}</div> : null}
                 {rep.tags[2] ? <div className='dashboard-tag' key={rep.tags[2].id} style={{backgroundColor: `${rep.tags[2].color}` }}>{rep.tags[2].title}</div> : null}
@@ -84,7 +84,7 @@ const Dashboard = ({repair}) => {
                         <Grid.Column>
                             <Segment>Entrée</Segment>
                         </Grid.Column>
-                        <Grid.Column>
+                        <Grid.Column >
                             <Segment>Tags</Segment>
                         </Grid.Column>
                         <Grid.Column>

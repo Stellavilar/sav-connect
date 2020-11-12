@@ -721,6 +721,7 @@ body {
     .ui.equal.width.grid {
       display: none;
     }
+
     .row.grid-details {
       display: flex;
       flex-direction: column;
@@ -734,17 +735,23 @@ body {
 
           .dashboard-tag {
             width: 150px;
-            margin-top: 10px;
-            align-self: center;
-
           }
         }
         .column.options {
           display: flex;
-          align-self: start;
+          align-self: center;
           margin-top: 15px;
         }
         
+    }
+
+    .row.grid-details .column.tags {
+      margin-left: 40%;
+      margin-top: 20px;
+    }
+    .row.grid-details i {
+      font-size: 1.9em;
+      margin: 0.7em;
     }
   }
   .repair-sheet {
